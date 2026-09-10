@@ -38,20 +38,6 @@
     revealEls.forEach(function(el){ el.classList.add('is-visible'); });
   }
 
-  /* Pre-fill "interested in" field on the contact form from a ?service= query param,
-     used by service page CTAs that route enrollment/booking through Contact. */
-  var params = new URLSearchParams(window.location.search);
-  var serviceParam = params.get('service');
-  if(serviceParam){
-    var select = document.getElementById('interest');
-    if(select){
-      var match = Array.prototype.find.call(select.options, function(opt){
-        return opt.value === serviceParam;
-      });
-      if(match){ select.value = serviceParam; }
-    }
-  }
-
   /* Contact / application forms: no backend is connected yet, so this only
      validates and shows an on-page confirmation rather than pretending to send. */
   document.querySelectorAll('form[data-placeholder-form]').forEach(function(form){
