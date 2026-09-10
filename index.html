@@ -412,6 +412,26 @@ svg{ display:block; }
 }
 .card--dark p{ color:var(--on-dark-muted); }
 
+/* ---------- service card sub-components (What's Included / Best For) ---------- */
+.service-card{ padding:34px 32px; }
+.service-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; width:100%; }
+.service-head .price-line{ width:auto; flex-shrink:0; text-align:right; }
+.mini-label{
+  font-family:var(--font-sans); font-size:11px; font-weight:600; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--gold-600);
+  margin-top:20px; margin-bottom:10px; display:block;
+}
+.card--dark .mini-label{ color:var(--gold-300); }
+.checklist--sm li{ padding:6px 0; font-size:.9rem; }
+.checklist--sm svg{ width:15px; height:15px; }
+.service-best{
+  width:100%; font-size:.88rem; color:var(--ink-700);
+  border-top:1px solid rgba(21,22,28,.08); padding-top:14px; margin-top:18px;
+}
+.card--dark .service-best{ border-top-color:rgba(255,255,255,.1); color:var(--on-dark-muted); }
+.service-best strong{ color:var(--ink-900); }
+.card--dark .service-best strong{ color:var(--white); }
+
 .card--flat{
   background:transparent;
   border:1px solid rgba(21,22,28,.1);
@@ -670,48 +690,110 @@ form.card .form-success{ background:rgba(205,164,77,.1); border-color:rgba(205,1
   <div class="container">
     <div class="section-head center" data-reveal>
       <div class="eyebrow eyebrow--center">What We Offer</div>
-      <h2 class="h-lg mt-16">Five Ways to Move Forward</h2>
-      <p class="lead center">Pick the path that fits where you are right now.</p>
+      <h2 class="h-lg mt-16">Services Built Around Where You Are</h2>
+      <p class="lead center">Every service below covers what it is, what's included, who it's best for, and how to start.</p>
     </div>
-    <div class="grid grid-3">
-      <div class="card" data-reveal>
-        <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 2.5 8.6 12 13.2l9.5-4.6L12 4Z"/><path d="M6.5 11.2v4.4c0 1.6 2.5 3 5.5 3s5.5-1.4 5.5-3v-4.4"/><path d="M21.5 8.6v6"/></svg></div>
-        <h3>Dispatching Course</h3>
-        <p>Self-paced online training &mdash; modules, tests, and certification to start or grow a dispatching career.</p>
-        <div class="price-line">$149.99 <small>one-time</small></div>
-        <a href="javascript:void(0)" onclick="goInterest('dispatching-course')" class="btn btn-outline-ink btn-sm">Get Started</a>
-      </div>
-      <div class="card" data-reveal>
-        <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M6 16V10a4 4 0 0 1 4-4h4"/></svg></div>
+    <div class="grid grid-2">
+
+      <div class="card service-card" data-reveal>
+        <div class="service-head">
+          <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M6 16V10a4 4 0 0 1 4-4h4"/></svg></div>
+          <div class="price-line" style="font-size:1.05rem;">Custom Quote</div>
+        </div>
         <h3>Dispatch Services</h3>
-        <p>Already have trucks? We handle rate negotiation, route planning, credit checks, and paperwork for you.</p>
+        <p>Already running trucks? We do the dispatching for you &mdash; finding and booking loads, talking to brokers, and keeping your trucks moving so you don't have to.</p>
+        <span class="mini-label">What's Included</span>
+        <ul class="checklist checklist--sm">
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Load searching &amp; booking help</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Broker rate negotiation</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Route planning</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Credit checks &amp; paperwork handling</span></li>
+        </ul>
+        <p class="service-best"><strong>Best for:</strong> Owner-operators and small fleets who want their trucks booked and moving without doing the dispatching themselves.</p>
         <a href="javascript:void(0)" onclick="goInterest('dispatch-services')" class="btn btn-outline-ink btn-sm">Get Started</a>
       </div>
-      <div class="card" data-reveal>
-        <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12.5l3.7-3.7a2 2 0 0 1 2.8 0l1.3 1.3M21.5 12.5l-3.7-3.7a2 2 0 0 0-2.8 0L8.3 15.5a1.5 1.5 0 0 0 2.1 2.1l1-.9M11 13l2.5 2.5a1.5 1.5 0 0 0 2.1-2.1"/></svg></div>
+
+      <div class="card service-card" data-reveal>
+        <div class="service-head">
+          <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12.5l3.7-3.7a2 2 0 0 1 2.8 0l1.3 1.3M21.5 12.5l-3.7-3.7a2 2 0 0 0-2.8 0L8.3 15.5a1.5 1.5 0 0 0 2.1 2.1l1-.9M11 13l2.5 2.5a1.5 1.5 0 0 0 2.1-2.1"/></svg></div>
+          <div class="price-line">$249.99 <small>/ month</small></div>
+        </div>
         <h3>Trucking Mentorship</h3>
-        <p>Weekly Zoom guidance for truck owners, operators, and dispatchers who want hands-on support.</p>
-        <div class="price-line">$249.99 <small>/ month</small></div>
-        <a href="javascript:void(0)" onclick="goInterest('mentorship')" class="btn btn-outline-ink btn-sm">Get Started</a>
+        <p>Whether you're new to trucking or already running a business, our mentorship gives you direct, practical guidance to help you operate smarter and grow with confidence.</p>
+        <span class="mini-label">What's Included</span>
+        <ul class="checklist checklist--sm">
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Weekly live Zoom sessions</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Practical business &amp; growth strategy</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Help understanding carriers, loads &amp; freight</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Ongoing accountability &amp; support</span></li>
+        </ul>
+        <p class="service-best"><strong>Best for:</strong> Truck owners, operators, and dispatchers who want hands-on guidance, not just theory.</p>
+        <a href="javascript:void(0)" onclick="goInterest('mentorship')" class="btn btn-outline-ink btn-sm">Join the Mentorship</a>
       </div>
-      <div class="card" data-reveal>
-        <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l7.5 3v5.2c0 4.8-3.3 7.7-7.5 9-4.2-1.3-7.5-4.2-7.5-9V6.5l7.5-3Z"/><path d="M9 12l2.2 2.2L15.5 9.5"/></svg></div>
+
+      <div class="card service-card" data-reveal>
+        <div class="service-head">
+          <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l7.5 3v5.2c0 4.8-3.3 7.7-7.5 9-4.2-1.3-7.5-4.2-7.5-9V6.5l7.5-3Z"/><path d="M9 12l2.2 2.2L15.5 9.5"/></svg></div>
+          <div class="price-line">Free <small>consultation</small></div>
+        </div>
         <h3>Credit Repair</h3>
-        <p>Personal &amp; business credit help through A1 Credit Solutions LLC, starting with a free consultation.</p>
+        <p>Through A1 Credit Solutions LLC, we review your credit report, identify negative or inaccurate items that may be disputable, and guide you step-by-step toward better credit.</p>
+        <span class="mini-label">What's Included</span>
+        <ul class="checklist checklist--sm">
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Free initial credit consultation</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Full credit report review</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Disputable item identification</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Guided dispute process &mdash; personal or business</span></li>
+        </ul>
+        <p class="service-best"><strong>Best for:</strong> Anyone rebuilding personal credit or building business credit who wants expert guidance instead of doing it alone.</p>
         <a href="javascript:void(0)" onclick="goInterest('credit-repair')" class="btn btn-outline-ink btn-sm">Book Free Consultation</a>
       </div>
-      <div class="card" data-reveal>
-        <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5C4 4.67 4.67 4 5.5 4H12v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z"/><path d="M20 5.5c0-.83-.67-1.5-1.5-1.5H12v16h6.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/></svg></div>
+
+      <div class="card service-card" data-reveal>
+        <div class="service-head">
+          <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 2.5 8.6 12 13.2l9.5-4.6L12 4Z"/><path d="M6.5 11.2v4.4c0 1.6 2.5 3 5.5 3s5.5-1.4 5.5-3v-4.4"/><path d="M21.5 8.6v6"/></svg></div>
+          <div class="price-line">$149.99 <small>one-time</small></div>
+        </div>
+        <h3>Dispatching Course</h3>
+        <p>Want to become a dispatcher yourself? This self-paced course teaches you truck dispatching from the ground up, with tests and a certification at the end.</p>
+        <span class="mini-label">What's Included</span>
+        <ul class="checklist checklist--sm">
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Self-paced online modules</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Real-world dispatching fundamentals</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Practice tests along the way</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Certificate of completion</span></li>
+        </ul>
+        <p class="service-best"><strong>Best for:</strong> Beginners, career changers, or entrepreneurs who want to learn dispatching as a new skill or career.</p>
+        <a href="javascript:void(0)" onclick="goInterest('dispatching-course')" class="btn btn-outline-ink btn-sm">Get Started</a>
+      </div>
+
+      <div class="card service-card" data-reveal style="grid-column:1 / -1;">
+        <div class="service-head">
+          <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5C4 4.67 4.67 4 5.5 4H12v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z"/><path d="M20 5.5c0-.83-.67-1.5-1.5-1.5H12v16h6.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/></svg></div>
+          <div class="price-line">From $20.99</div>
+        </div>
         <h3>Digital Products</h3>
-        <p>Ebooks and guides on credit repair and dispatching, starting at $20.99 &mdash; learn at your own pace.</p>
-        <a href="javascript:void(0)" onclick="goInterest('digital-products')" class="btn btn-outline-ink btn-sm">Get Started</a>
+        <p>Prefer to learn on your own time? These guides walk you through credit repair and dispatching topics at your own pace &mdash; no subscription, no live sessions.</p>
+        <span class="mini-label">What's Included</span>
+        <ul class="checklist checklist--sm">
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>DIY Credit Repair guide &mdash; $20.99</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Mastering Business Credit guide &mdash; $28.99</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>24 Hour Credit Inquiry Removal guide &mdash; $25.99</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Dispatching income guide &mdash; $34.99</span></li>
+        </ul>
+        <p class="service-best"><strong>Best for:</strong> Self-starters who want practical, affordable guides they can work through on their own.</p>
+        <a href="javascript:void(0)" onclick="goInterest('digital-products')" class="btn btn-outline-ink btn-sm">Browse Guides</a>
       </div>
-      <div class="card card--dark" data-reveal>
-        <div class="icon-wrap icon-wrap--dark"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="11" height="8" rx="1"/><path d="M13.5 10.5h3.6L20.5 14v2h-7Z"/><circle cx="6.5" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></div>
-        <h3>We're Hiring</h3>
-        <p>Looking for qualified CDL box truck drivers with commercial driving experience.</p>
-        <a href="javascript:void(0)" onclick="goInterest('cdl-driver')" class="btn btn-outline-dark btn-sm">Apply Now</a>
+
+    </div>
+
+    <div class="cta-band mt-40" data-reveal>
+      <div>
+        <div class="eyebrow">We're Hiring</div>
+        <h3 class="mt-16">Looking for CDL Box Truck Drivers</h3>
+        <p>Qualified drivers with commercial driving experience &mdash; we'd love to hear from you.</p>
       </div>
+      <a href="javascript:void(0)" onclick="goInterest('cdl-driver')" class="btn btn-gold">Apply Now</a>
     </div>
   </div>
 </section>

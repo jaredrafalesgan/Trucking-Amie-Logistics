@@ -398,6 +398,26 @@ svg{ display:block; }
 }
 .card--dark p{ color:var(--on-dark-muted); }
 
+/* ---------- service card sub-components (What's Included / Best For) ---------- */
+.service-card{ padding:34px 32px; }
+.service-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; width:100%; }
+.service-head .price-line{ width:auto; flex-shrink:0; text-align:right; }
+.mini-label{
+  font-family:var(--font-sans); font-size:11px; font-weight:600; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--gold-600);
+  margin-top:20px; margin-bottom:10px; display:block;
+}
+.card--dark .mini-label{ color:var(--gold-300); }
+.checklist--sm li{ padding:6px 0; font-size:.9rem; }
+.checklist--sm svg{ width:15px; height:15px; }
+.service-best{
+  width:100%; font-size:.88rem; color:var(--ink-700);
+  border-top:1px solid rgba(21,22,28,.08); padding-top:14px; margin-top:18px;
+}
+.card--dark .service-best{ border-top-color:rgba(255,255,255,.1); color:var(--on-dark-muted); }
+.service-best strong{ color:var(--ink-900); }
+.card--dark .service-best strong{ color:var(--white); }
+
 .card--flat{
   background:transparent;
   border:1px solid rgba(21,22,28,.1);
