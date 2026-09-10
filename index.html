@@ -62,7 +62,8 @@
 }
 
 *,*::before,*::after{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; overflow-x:hidden; width:100%; }
+html{ scroll-behavior:smooth; width:100%; }
+#top, #offer, #dispatch-services, #mentorship, #credit-repair, #who, #why, #details, #how, #contact{ scroll-margin-top:96px; }
 body{
   margin:0;
   width:100%;
@@ -197,16 +198,27 @@ svg{ display:block; }
    ========================================================================== */
 .site-header{
   position:sticky; top:0; z-index:60;
-  background:rgba(3,3,5,.96);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(212,175,90,.14);
+  background:rgba(9,10,14,.58);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  border-bottom:1px solid rgba(212,175,90,.16);
+  box-shadow:0 12px 34px -18px rgba(0,0,0,.55);
+  transition:background .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.site-header.is-scrolled{
+  background:rgba(6,7,10,.86);
+  border-bottom-color:rgba(212,175,90,.22);
+  box-shadow:0 14px 30px -12px rgba(0,0,0,.6);
 }
 .nav{
   display:flex; align-items:center; justify-content:space-between;
-  padding:13px var(--gutter);
+  padding:15px var(--gutter);
   max-width:var(--container); margin:0 auto;
   gap:24px;
+  transition:padding .35s ease;
 }
+.site-header.is-scrolled .nav{ padding-block:9px; }
+.site-header.is-scrolled .nav-brand-mark{ width:154px; height:38px; }
 .nav-brand{ display:flex; align-items:center; flex-shrink:0; }
 .nav-brand img{ height:42px; width:auto; }
 .nav-brand-mark{
@@ -215,6 +227,7 @@ svg{ display:block; }
   border:1px solid rgba(212,175,90,.22);
   box-shadow:0 8px 20px -10px rgba(0,0,0,.65);
   background: var(--logo-nav-url) center/contain no-repeat, #010102;
+  transition:width .35s ease, height .35s ease;
 }
 .nav-links{
   display:flex; align-items:center; gap:22px;
@@ -406,16 +419,17 @@ svg{ display:block; }
 .card.text-center{ align-items:center; }
 
 .card--dark{
-  background:var(--navy-800);
-  border:1px solid var(--navy-line);
+  background:rgba(26,29,41,.55);
+  backdrop-filter:blur(14px) saturate(130%);
+  -webkit-backdrop-filter:blur(14px) saturate(130%);
+  border:1px solid rgba(212,175,90,.16);
   color:var(--white);
+  transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
+.card--dark:hover{ border-color:rgba(212,175,90,.32); }
 .card--dark p{ color:var(--on-dark-muted); }
 
-/* ---------- service card sub-components (What's Included / Best For) ---------- */
-.service-card{ padding:34px 32px; }
-.service-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; width:100%; }
-.service-head .price-line{ width:auto; flex-shrink:0; text-align:right; }
+/* ---------- mini label (small gold caps heading used inside cards/panels) ---------- */
 .mini-label{
   font-family:var(--font-sans); font-size:11px; font-weight:600; letter-spacing:.1em;
   text-transform:uppercase; color:var(--gold-600);
@@ -424,13 +438,43 @@ svg{ display:block; }
 .card--dark .mini-label{ color:var(--gold-300); }
 .checklist--sm li{ padding:6px 0; font-size:.9rem; }
 .checklist--sm svg{ width:15px; height:15px; }
-.service-best{
-  width:100%; font-size:.88rem; color:var(--ink-700);
-  border-top:1px solid rgba(21,22,28,.08); padding-top:14px; margin-top:18px;
+.service-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; width:100%; }
+.service-head .price-line{ width:auto; flex-shrink:0; text-align:right; }
+.service-note{ font-size:.82rem; color:var(--ink-500); font-style:italic; margin-top:8px; }
+
+/* ---------- full-detail service panel ---------- */
+.service-panel{
+  background:var(--white);
+  border:1px solid rgba(21,22,28,.07);
+  border-radius:var(--radius-lg);
+  padding:42px 44px 38px;
+  box-shadow:var(--shadow-md);
+  margin-bottom:28px;
+  transition:transform .3s ease, box-shadow .3s ease;
 }
-.card--dark .service-best{ border-top-color:rgba(255,255,255,.1); color:var(--on-dark-muted); }
-.service-best strong{ color:var(--ink-900); }
-.card--dark .service-best strong{ color:var(--white); }
+.service-panel:hover{ transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+.service-panel-head{
+  display:flex; align-items:flex-start; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  padding-bottom:26px; margin-bottom:30px;
+  border-bottom:1px solid rgba(21,22,28,.08);
+}
+.service-panel-head-left{ display:flex; align-items:flex-start; gap:20px; }
+.service-panel-head-left h3{ font-size:1.55rem; }
+.service-intro{ margin-top:8px; color:var(--ink-700); font-size:1rem; line-height:1.65; max-width:580px; }
+.service-panel-head .price-line{ flex-shrink:0; text-align:right; }
+.service-panel-grid{ display:grid; grid-template-columns:1.15fr 1fr; gap:40px; margin-bottom:30px; }
+.service-info-block + .service-info-block{ margin-top:24px; }
+.service-info-block p{ margin-top:8px; color:var(--ink-700); font-size:.95rem; line-height:1.65; }
+.service-how{ border-top:1px solid rgba(21,22,28,.08); padding-top:28px; margin-bottom:28px; }
+.steps--compact{ gap:16px 20px; }
+.steps--compact .step-num{ width:42px; height:42px; font-size:.92rem; margin-bottom:12px; }
+.steps--compact .steps-line{ top:21px; }
+.steps--compact h4{ font-size:.95rem; margin-bottom:6px; }
+.steps--compact p{ font-size:.83rem; }
+@media (max-width:900px){
+  .service-panel{ padding:34px 26px 30px; }
+  .service-panel-grid{ grid-template-columns:1fr; gap:26px; }
+}
 
 .card--flat{
   background:transparent;
@@ -632,15 +676,16 @@ form.card .form-success{ background:rgba(205,164,77,.1); border-color:rgba(205,1
     </a>
     <div class="nav-links">
       <a href="#top">Home</a>
-<a href="#offer">What We Offer</a>
-<a href="#who">Who It's For</a>
-<a href="#why">Why Us</a>
-<a href="#details">Details</a>
-<a href="#how">How It Works</a>
+<a href="#offer">Services</a>
+<a href="#dispatch-services">Dispatching</a>
+<a href="#mentorship">Mentorship</a>
+<a href="#credit-repair">Credit Repair</a>
+<a href="#why">About</a>
+<a href="#contact">Contact</a>
 
     </div>
     <div class="nav-cta">
-      <a href="#contact" class="btn btn-gold btn-sm">Contact Us</a>
+      <a href="#contact" class="btn btn-gold btn-sm">Get Started</a>
       <button class="nav-toggle" aria-label="Open menu"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </nav>
@@ -648,13 +693,14 @@ form.card .form-success{ background:rgba(205,164,77,.1); border-color:rgba(205,1
 <div class="mobile-panel">
   <button class="mobile-close" aria-label="Close menu"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <a href="#top">Home</a>
-<a href="#offer">What We Offer</a>
-<a href="#who">Who It's For</a>
-<a href="#why">Why Us</a>
-<a href="#details">Details</a>
-<a href="#how">How It Works</a>
+<a href="#offer">Services</a>
+<a href="#dispatch-services">Dispatching</a>
+<a href="#mentorship">Mentorship</a>
+<a href="#credit-repair">Credit Repair</a>
+<a href="#why">About</a>
+<a href="#contact">Contact</a>
 
-  <a href="#contact" class="btn btn-gold btn-block">Contact Us</a>
+  <a href="#contact" class="btn btn-gold btn-block">Get Started</a>
 </div>
 
 <main>
@@ -691,100 +737,211 @@ form.card .form-success{ background:rgba(205,164,77,.1); border-color:rgba(205,1
     <div class="section-head center" data-reveal>
       <div class="eyebrow eyebrow--center">What We Offer</div>
       <h2 class="h-lg mt-16">Services Built Around Where You Are</h2>
-      <p class="lead center">Every service below covers what it is, what's included, who it's best for, and how to start.</p>
+      <p class="lead center">What it is, what you get, who it's for, why it matters, and how to start &mdash; for every service.</p>
     </div>
-    <div class="grid grid-2">
 
-      <div class="card service-card" data-reveal>
-        <div class="service-head">
+    <div class="service-panel" id="dispatch-services" data-reveal>
+      <div class="service-panel-head">
+        <div class="service-panel-head-left">
           <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M6 16V10a4 4 0 0 1 4-4h4"/></svg></div>
-          <div class="price-line" style="font-size:1.05rem;">Custom Quote</div>
+          <div>
+            <h3>Dispatch Services</h3>
+            <p class="service-intro">Already running trucks? We handle the day-to-day dispatching &mdash; finding loads, working brokers, and keeping your trucks moving &mdash; so you can focus on driving and running your business.</p>
+          </div>
         </div>
-        <h3>Dispatch Services</h3>
-        <p>Already running trucks? We do the dispatching for you &mdash; finding and booking loads, talking to brokers, and keeping your trucks moving so you don't have to.</p>
-        <span class="mini-label">What's Included</span>
-        <ul class="checklist checklist--sm">
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Load searching &amp; booking help</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Broker rate negotiation</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Route planning</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Credit checks &amp; paperwork handling</span></li>
-        </ul>
-        <p class="service-best"><strong>Best for:</strong> Owner-operators and small fleets who want their trucks booked and moving without doing the dispatching themselves.</p>
-        <a href="javascript:void(0)" onclick="goInterest('dispatch-services')" class="btn btn-outline-ink btn-sm">Get Started</a>
+        <div class="price-line" style="font-size:1.1rem;">Custom Quote</div>
       </div>
+      <div class="service-panel-grid">
+        <div>
+          <span class="mini-label">What We Provide</span>
+          <ul class="checklist checklist--sm">
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Load searching &amp; finding suitable freight</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Broker communication &amp; rate negotiation</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Load booking</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Route &amp; load coordination</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Paperwork &amp; administrative support</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Credit checks on brokers &amp; shippers</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="service-info-block">
+            <span class="mini-label">Who It's For</span>
+            <p>Owner-operators and small fleets who want their trucks booked and moving without handling the dispatching themselves.</p>
+          </div>
+          <div class="service-info-block">
+            <span class="mini-label">Why It Matters</span>
+            <p>Professional dispatching means more time driving and running your business, and less time chasing loads and paperwork.</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-how">
+        <span class="mini-label">How It Works</span>
+        <div class="steps steps--compact">
+          <div class="steps-line"></div>
+          <div class="step"><div class="step-num">1</div><h4>Tell Us About Your Trucks</h4><p>Share your setup and lanes.</p></div>
+          <div class="step"><div class="step-num">2</div><h4>We Find &amp; Negotiate Loads</h4><p>We work brokers on your behalf.</p></div>
+          <div class="step"><div class="step-num">3</div><h4>We Handle the Paperwork</h4><p>Booking &amp; admin, handled.</p></div>
+          <div class="step"><div class="step-num">4</div><h4>You Drive &amp; Get Paid</h4><p>Focus on the road.</p></div>
+        </div>
+      </div>
+      <a href="javascript:void(0)" onclick="goInterest('dispatch-services')" class="btn btn-gold">Get Started</a>
+    </div>
 
-      <div class="card service-card" data-reveal>
-        <div class="service-head">
+    <div class="service-panel" id="mentorship" data-reveal>
+      <div class="service-panel-head">
+        <div class="service-panel-head-left">
           <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12.5l3.7-3.7a2 2 0 0 1 2.8 0l1.3 1.3M21.5 12.5l-3.7-3.7a2 2 0 0 0-2.8 0L8.3 15.5a1.5 1.5 0 0 0 2.1 2.1l1-.9M11 13l2.5 2.5a1.5 1.5 0 0 0 2.1-2.1"/></svg></div>
-          <div class="price-line">$249.99 <small>/ month</small></div>
+          <div>
+            <h3>Trucking Mentorship</h3>
+            <p class="service-intro">One-on-one guidance for anyone getting started in trucking or looking to grow their existing operation &mdash; real business strategy, not generic coaching.</p>
+          </div>
         </div>
-        <h3>Trucking Mentorship</h3>
-        <p>Whether you're new to trucking or already running a business, our mentorship gives you direct, practical guidance to help you operate smarter and grow with confidence.</p>
-        <span class="mini-label">What's Included</span>
-        <ul class="checklist checklist--sm">
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Weekly live Zoom sessions</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Practical business &amp; growth strategy</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Help understanding carriers, loads &amp; freight</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Ongoing accountability &amp; support</span></li>
-        </ul>
-        <p class="service-best"><strong>Best for:</strong> Truck owners, operators, and dispatchers who want hands-on guidance, not just theory.</p>
-        <a href="javascript:void(0)" onclick="goInterest('mentorship')" class="btn btn-outline-ink btn-sm">Join the Mentorship</a>
+        <div class="price-line">$249.99 <small>/ month</small></div>
       </div>
+      <div class="service-panel-grid">
+        <div>
+          <span class="mini-label">What We Provide</span>
+          <ul class="checklist checklist--sm">
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>One-on-one, weekly Zoom guidance</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Help understanding how the trucking business works</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Practical business knowledge, not just theory</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Guidance for people just getting started</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Strategies for improving &amp; growing your operation</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Ongoing support &amp; accountability</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="service-info-block">
+            <span class="mini-label">Who It's For</span>
+            <p>Truck owners, operators, and dispatchers who want direct guidance instead of figuring it out alone.</p>
+          </div>
+          <div class="service-info-block">
+            <span class="mini-label">Why It Matters</span>
+            <p>Trucking has a real learning curve &mdash; mentorship helps you make smarter decisions faster and avoid costly mistakes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-how">
+        <span class="mini-label">How It Works</span>
+        <div class="steps steps--compact">
+          <div class="steps-line"></div>
+          <div class="step"><div class="step-num">1</div><h4>Join the Mentorship</h4><p>Sign up to get started.</p></div>
+          <div class="step"><div class="step-num">2</div><h4>Meet Weekly on Zoom</h4><p>Live, one-on-one sessions.</p></div>
+          <div class="step"><div class="step-num">3</div><h4>Get Direct Guidance</h4><p>On your specific business.</p></div>
+          <div class="step"><div class="step-num">4</div><h4>Grow With Support</h4><p>Ongoing accountability.</p></div>
+        </div>
+      </div>
+      <a href="javascript:void(0)" onclick="goInterest('mentorship')" class="btn btn-gold">Join the Mentorship</a>
+    </div>
 
-      <div class="card service-card" data-reveal>
-        <div class="service-head">
+    <div class="service-panel" id="credit-repair" data-reveal>
+      <div class="service-panel-head">
+        <div class="service-panel-head-left">
           <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l7.5 3v5.2c0 4.8-3.3 7.7-7.5 9-4.2-1.3-7.5-4.2-7.5-9V6.5l7.5-3Z"/><path d="M9 12l2.2 2.2L15.5 9.5"/></svg></div>
-          <div class="price-line">Free <small>consultation</small></div>
+          <div>
+            <h3>Credit Repair</h3>
+            <p class="service-intro">Through A1 Credit Solutions LLC, we help you understand what's on your credit report and work toward healthier credit &mdash; in clear, responsible terms.</p>
+          </div>
         </div>
-        <h3>Credit Repair</h3>
-        <p>Through A1 Credit Solutions LLC, we review your credit report, identify negative or inaccurate items that may be disputable, and guide you step-by-step toward better credit.</p>
-        <span class="mini-label">What's Included</span>
-        <ul class="checklist checklist--sm">
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Free initial credit consultation</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Full credit report review</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Disputable item identification</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Guided dispute process &mdash; personal or business</span></li>
-        </ul>
-        <p class="service-best"><strong>Best for:</strong> Anyone rebuilding personal credit or building business credit who wants expert guidance instead of doing it alone.</p>
-        <a href="javascript:void(0)" onclick="goInterest('credit-repair')" class="btn btn-outline-ink btn-sm">Book Free Consultation</a>
+        <div class="price-line">Free <small>consultation</small></div>
       </div>
+      <div class="service-panel-grid">
+        <div>
+          <span class="mini-label">What We Provide</span>
+          <ul class="checklist checklist--sm">
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Full review of your credit reports</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Identifying potentially inaccurate or questionable information</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Guidance through the dispute process</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Credit education along the way</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Strategies for building healthier credit habits</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="service-info-block">
+            <span class="mini-label">Who It's For</span>
+            <p>Anyone working on personal credit or building business credit who wants expert guidance instead of doing it alone.</p>
+          </div>
+          <div class="service-info-block">
+            <span class="mini-label">Why It Matters</span>
+            <p>Understanding your credit report, and what may realistically be disputable, is the first real step toward better financial options.</p>
+            <p class="service-note">Results vary and aren't guaranteed &mdash; see full details in the section below.</p>
+          </div>
+        </div>
+      </div>
+      <div class="service-how">
+        <span class="mini-label">How It Works</span>
+        <div class="steps steps--compact">
+          <div class="steps-line"></div>
+          <div class="step"><div class="step-num">1</div><h4>Free Consultation</h4><p>We review your situation.</p></div>
+          <div class="step"><div class="step-num">2</div><h4>Credit Report Review</h4><p>A full look at what's there.</p></div>
+          <div class="step"><div class="step-num">3</div><h4>Guided Disputes</h4><p>Personal or business credit.</p></div>
+          <div class="step"><div class="step-num">4</div><h4>Ongoing Education</h4><p>Build healthier habits.</p></div>
+        </div>
+      </div>
+      <a href="javascript:void(0)" onclick="goInterest('credit-repair')" class="btn btn-gold">Book Free Consultation</a>
+    </div>
 
-      <div class="card service-card" data-reveal>
-        <div class="service-head">
+    <div class="service-panel" data-reveal>
+      <div class="service-panel-head">
+        <div class="service-panel-head-left">
           <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 2.5 8.6 12 13.2l9.5-4.6L12 4Z"/><path d="M6.5 11.2v4.4c0 1.6 2.5 3 5.5 3s5.5-1.4 5.5-3v-4.4"/><path d="M21.5 8.6v6"/></svg></div>
-          <div class="price-line">$149.99 <small>one-time</small></div>
+          <div>
+            <h3>Dispatching Course</h3>
+            <p class="service-intro">Want to become a dispatcher yourself? This self-paced course teaches truck dispatching from the ground up, with tests and a certification at the end.</p>
+          </div>
         </div>
-        <h3>Dispatching Course</h3>
-        <p>Want to become a dispatcher yourself? This self-paced course teaches you truck dispatching from the ground up, with tests and a certification at the end.</p>
-        <span class="mini-label">What's Included</span>
-        <ul class="checklist checklist--sm">
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Self-paced online modules</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Real-world dispatching fundamentals</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Practice tests along the way</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Certificate of completion</span></li>
-        </ul>
-        <p class="service-best"><strong>Best for:</strong> Beginners, career changers, or entrepreneurs who want to learn dispatching as a new skill or career.</p>
-        <a href="javascript:void(0)" onclick="goInterest('dispatching-course')" class="btn btn-outline-ink btn-sm">Get Started</a>
+        <div class="price-line">$149.99 <small>one-time</small></div>
       </div>
-
-      <div class="card service-card" data-reveal style="grid-column:1 / -1;">
-        <div class="service-head">
-          <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5C4 4.67 4.67 4 5.5 4H12v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z"/><path d="M20 5.5c0-.83-.67-1.5-1.5-1.5H12v16h6.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/></svg></div>
-          <div class="price-line">From $20.99</div>
+      <div class="service-panel-grid">
+        <div>
+          <span class="mini-label">What We Provide</span>
+          <ul class="checklist checklist--sm">
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Self-paced online modules</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Real-world dispatching fundamentals</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Practice tests along the way</span></li>
+            <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Certificate of completion</span></li>
+          </ul>
         </div>
-        <h3>Digital Products</h3>
-        <p>Prefer to learn on your own time? These guides walk you through credit repair and dispatching topics at your own pace &mdash; no subscription, no live sessions.</p>
-        <span class="mini-label">What's Included</span>
-        <ul class="checklist checklist--sm">
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>DIY Credit Repair guide &mdash; $20.99</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Mastering Business Credit guide &mdash; $28.99</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>24 Hour Credit Inquiry Removal guide &mdash; $25.99</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Dispatching income guide &mdash; $34.99</span></li>
-        </ul>
-        <p class="service-best"><strong>Best for:</strong> Self-starters who want practical, affordable guides they can work through on their own.</p>
-        <a href="javascript:void(0)" onclick="goInterest('digital-products')" class="btn btn-outline-ink btn-sm">Browse Guides</a>
+        <div>
+          <div class="service-info-block">
+            <span class="mini-label">Who It's For</span>
+            <p>Beginners, career changers, or entrepreneurs who want to learn dispatching as a new skill or career.</p>
+          </div>
+          <div class="service-info-block">
+            <span class="mini-label">Why It Matters</span>
+            <p>You learn on your own schedule and finish with a certification you can point to.</p>
+          </div>
+        </div>
       </div>
+      <div class="service-how">
+        <span class="mini-label">How It Works</span>
+        <div class="steps steps--compact">
+          <div class="steps-line"></div>
+          <div class="step"><div class="step-num">1</div><h4>Enroll</h4><p>Start the course anytime.</p></div>
+          <div class="step"><div class="step-num">2</div><h4>Work the Modules</h4><p>At your own pace.</p></div>
+          <div class="step"><div class="step-num">3</div><h4>Take the Tests</h4><p>Check your understanding.</p></div>
+          <div class="step"><div class="step-num">4</div><h4>Get Certified</h4><p>Earn your certification.</p></div>
+        </div>
+      </div>
+      <a href="javascript:void(0)" onclick="goInterest('dispatching-course')" class="btn btn-gold">Get Started</a>
+    </div>
 
+    <div class="card service-card" data-reveal>
+      <div class="service-head">
+        <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5C4 4.67 4.67 4 5.5 4H12v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z"/><path d="M20 5.5c0-.83-.67-1.5-1.5-1.5H12v16h6.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/></svg></div>
+        <div class="price-line">From $20.99</div>
+      </div>
+      <h3>Digital Products</h3>
+      <p>Prefer to learn on your own time? These guides walk you through credit repair and dispatching topics at your own pace &mdash; no subscription, no live sessions.</p>
+      <span class="mini-label">What's Included</span>
+      <ul class="checklist checklist--sm">
+        <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>DIY Credit Repair guide &mdash; $20.99</span></li>
+        <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Mastering Business Credit guide &mdash; $28.99</span></li>
+        <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>24 Hour Credit Inquiry Removal guide &mdash; $25.99</span></li>
+        <li><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span>Dispatching income guide &mdash; $34.99</span></li>
+      </ul>
+      <p class="service-note mt-16">Best for self-starters who want practical, affordable guides they can work through on their own.</p>
+      <a href="javascript:void(0)" onclick="goInterest('digital-products')" class="btn btn-outline-ink btn-sm">Browse Guides</a>
     </div>
 
     <div class="cta-band mt-40" data-reveal>
@@ -976,6 +1133,56 @@ form.card .form-success{ background:rgba(205,164,77,.1); border-color:rgba(205,1
   if(closeBtn){ closeBtn.addEventListener('click', closePanel); }
   if(panel){
     panel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closePanel); });
+  }
+
+  /* Glass header: shrink + go more opaque once the visitor scrolls past the hero */
+  var header = document.querySelector('.site-header');
+  if(header){
+    var onScroll = function(){
+      if(window.scrollY > 40){ header.classList.add('is-scrolled'); }
+      else{ header.classList.remove('is-scrolled'); }
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  /* Scroll-spy: highlight the nav link for whichever section is currently in view.
+     Sections vary hugely in height (the offer section is several times taller than
+     the others), so a single IntersectionObserver rootMargin band isn't reliable
+     across all of them — instead, track each section's document-relative top and
+     pick whichever one the scroll position has most recently passed. */
+  var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  var spySections = [];
+  navLinks.forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if(el && id !== 'top'){ spySections.push({ id: id, el: el, top: 0 }); }
+  });
+  if(spySections.length){
+    var measure = function(){
+      spySections.forEach(function(s){
+        s.top = s.el.getBoundingClientRect().top + window.scrollY;
+      });
+    };
+    var setActive = function(id){
+      navLinks.forEach(function(a){
+        a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+      });
+    };
+    var onSpyScroll = function(){
+      var headerEl = document.querySelector('.site-header');
+      var offset = (headerEl ? headerEl.offsetHeight : 70) + 40;
+      var y = window.scrollY + offset;
+      var current = spySections[0];
+      for(var i = 0; i < spySections.length; i++){
+        if(spySections[i].top <= y){ current = spySections[i]; }
+      }
+      setActive(current.id);
+    };
+    measure();
+    onSpyScroll();
+    window.addEventListener('scroll', onSpyScroll, { passive: true });
+    window.addEventListener('resize', function(){ measure(); onSpyScroll(); });
   }
 
   /* Scroll reveal */
