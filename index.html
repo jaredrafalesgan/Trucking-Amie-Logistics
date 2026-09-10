@@ -797,12 +797,6 @@ svg{ display:block; }
         <p>Ebooks and workbooks to help you learn credit repair and trucking on your own time.</p>
         <a href="digital-products.html" class="btn btn-outline-ink btn-sm">Shop Now</a>
       </div>
-      <div class="card" data-reveal>
-        <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6.3" cy="6.5" r="2.2"/><circle cx="6.3" cy="17.5" r="2.2"/><path d="M8 8l12 12M20 4L8 16"/></svg></div>
-        <h3>Hair Salon</h3>
-        <p>Professional beauty services designed to help you look and feel your best.</p>
-        <a href="contact.html?service=hair-salon" class="btn btn-outline-ink btn-sm">Explore Salon</a>
-      </div>
     </div>
   </div>
 </section>
@@ -988,7 +982,7 @@ svg{ display:block; }
   }
 
   /* Pre-fill "interested in" field on the contact form from a ?service= query param,
-     used by service tiles (e.g. the Hair Salon card) that don't have a dedicated page. */
+     used by service page CTAs that route enrollment/booking through Contact. */
   var params = new URLSearchParams(window.location.search);
   var serviceParam = params.get('service');
   if(serviceParam){

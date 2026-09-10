@@ -940,7 +940,7 @@ svg{ display:block; }
   }
 
   /* Pre-fill "interested in" field on the contact form from a ?service= query param,
-     used by service tiles (e.g. the Hair Salon card) that don't have a dedicated page. */
+     used by service page CTAs that route enrollment/booking through Contact. */
   var params = new URLSearchParams(window.location.search);
   var serviceParam = params.get('service');
   if(serviceParam){

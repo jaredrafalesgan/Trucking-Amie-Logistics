@@ -766,7 +766,6 @@ svg{ display:block; }
             <option value="mentorship">Trucking &amp; Transportation Mentorship</option>
             <option value="credit-repair">Credit Repair</option>
             <option value="digital-products">Digital Products</option>
-            <option value="hair-salon">Hair Salon</option>
             <option value="cdl-driver">CDL Box Truck Driver Position</option>
             <option value="general">General Inquiry</option>
           </select>
@@ -872,7 +871,7 @@ svg{ display:block; }
   }
 
   /* Pre-fill "interested in" field on the contact form from a ?service= query param,
-     used by service tiles (e.g. the Hair Salon card) that don't have a dedicated page. */
+     used by service page CTAs that route enrollment/booking through Contact. */
   var params = new URLSearchParams(window.location.search);
   var serviceParam = params.get('service');
   if(serviceParam){
