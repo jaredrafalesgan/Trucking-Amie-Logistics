@@ -618,10 +618,18 @@ svg{ display:block; }
   display:flex; align-items:center; justify-content:center;
   position:relative;
 }
-.product-thumb .icon{ width:44px; height:44px; stroke:var(--gold-300); }
+.product-thumb .icon{ width:44px; height:44px; stroke:var(--gold-300); position:relative; z-index:1; }
 .product-thumb::after{
   content:""; position:absolute; inset:0;
   background:radial-gradient(circle at 30% 20%, rgba(205,164,77,.28), transparent 55%);
+}
+.product-thumb--photo{
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+.product-thumb--photo::after{
+  background:linear-gradient(180deg, rgba(4,5,9,.2), rgba(4,5,9,.6));
 }
 .product-body{ display:flex; flex-direction:column; flex:1; padding:26px 24px 28px; }
 .product-body h3{ font-size:1.1rem; }
