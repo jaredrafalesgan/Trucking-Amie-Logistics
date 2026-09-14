@@ -781,6 +781,8 @@ form.card .form-success{ background:rgba(205,164,77,.1); border-color:rgba(205,1
 }
 .footer-col a{ display:block; font-size:.92rem; padding:6px 0; color:var(--on-dark-muted); transition:color .2s ease; }
 .footer-col a:hover{ color:var(--gold-300); }
+.footer-col a.btn{ display:inline-flex; padding:11px 22px; color:var(--white); }
+.footer-col a.btn:hover{ color:var(--gold-300); }
 .footer-bottom{
   display:flex; align-items:center; justify-content:space-between; gap:16px;
   padding:24px 0 34px;
