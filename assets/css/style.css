@@ -67,7 +67,6 @@ body{
    edge-to-edge. .container elements nested inside still center the actual
    text/cards at a comfortable reading width — only the band itself, not the
    content, goes full width. */
-.site-header,
 .hero,
 .section,
 .strip,
@@ -184,7 +183,7 @@ svg{ display:block; }
    HEADER / NAV
    ========================================================================== */
 .site-header{
-  position:sticky; top:0; z-index:60;
+  position:fixed; top:0; left:0; width:100%; z-index:60;
   background:rgba(7,8,12,.82);
   backdrop-filter:blur(18px) saturate(140%) brightness(.75);
   -webkit-backdrop-filter:blur(18px) saturate(140%) brightness(.75);
@@ -298,7 +297,7 @@ svg{ display:block; }
     linear-gradient(180deg,var(--navy-950),var(--navy-900) 60%,var(--navy-800));
   color:var(--white);
   overflow:hidden;
-  padding:96px 0 110px;
+  padding:130px 0 110px;
 }
 .hero::before{
   content:"";
@@ -354,7 +353,7 @@ svg{ display:block; }
 .hero-badge strong{ display:block; font-family:var(--font-display); font-size:1.4rem; color:var(--gold-300); }
 .hero-badge span{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--on-dark-muted); }
 
-.hero--compact{ padding:80px 0 84px; }
+.hero--compact{ padding:132px 0 84px; }
 .hero--compact .hero-inner{ grid-template-columns:1fr; text-align:center; }
 .hero--compact .lead{ margin-inline:auto; }
 .hero--compact .hero-ctas{ justify-content:center; }
@@ -374,7 +373,7 @@ svg{ display:block; }
   display:flex;
   align-items:center;
   min-height:700px;
-  padding:70px 0;
+  padding:150px 0 80px;
 }
 .hero--truck::before{ display:none; }
 .hero-truck-overlay{
