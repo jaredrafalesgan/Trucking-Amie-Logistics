@@ -425,6 +425,35 @@ svg{ display:block; }
 .section--dark .lead, .section--dark p{ color:var(--on-dark-muted); }
 .on-dark h2, .on-dark h3, .on-dark h4{ color:var(--white); }
 
+/* ---------- dark section with a photo behind the existing gradient ---------- */
+.section--dark-photo{
+  position:relative;
+  overflow:hidden;
+  background-size:cover;
+  background-position:center right;
+  background-repeat:no-repeat;
+}
+.section--dark-photo-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(90deg,
+    rgba(4,5,9,.95) 0%,
+    rgba(4,5,9,.88) 30%,
+    rgba(4,5,9,.58) 55%,
+    rgba(4,5,9,.28) 75%,
+    rgba(4,5,9,.08) 92%);
+  z-index:1;
+}
+.section--dark-photo > .container{ position:relative; z-index:2; }
+@media (max-width: 900px){
+  .section--dark-photo-overlay{
+    background:linear-gradient(160deg,
+      rgba(4,5,9,.95) 0%,
+      rgba(4,5,9,.9) 45%,
+      rgba(4,5,9,.72) 68%,
+      rgba(4,5,9,.5) 100%);
+  }
+}
+
 .divider-gold{
   width:64px; height:2px;
   background:linear-gradient(90deg,var(--gold-300),var(--gold-700));
