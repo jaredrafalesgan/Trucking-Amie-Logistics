@@ -49,7 +49,7 @@
 
 *,*::before,*::after{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; width:100%; }
-#top, #offer, #dispatch-services, #mentorship, #credit-repair, #who, #why, #details, #how, #contact{ scroll-margin-top:96px; }
+#top, #offer, #dispatch-services, #mentorship, #credit-repair, #digital-products, #who, #why, #details, #how, #contact{ scroll-margin-top:96px; }
 body{
   margin:0;
   width:100%;
