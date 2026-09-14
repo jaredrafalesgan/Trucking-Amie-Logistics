@@ -695,6 +695,33 @@ svg{ display:block; }
 .cta-band p{ color:var(--on-dark-muted); margin-top:10px; max-width:480px; }
 .cta-band .btn{ position:relative; z-index:1; }
 
+/* ---------- cta band with a photo behind the existing dark gradient ---------- */
+.cta-band--photo{
+  background-size:cover;
+  background-position:center right;
+  background-repeat:no-repeat;
+}
+.cta-band-photo-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(100deg,
+    rgba(4,5,9,.95) 0%,
+    rgba(4,5,9,.9) 40%,
+    rgba(4,5,9,.68) 65%,
+    rgba(4,5,9,.35) 82%,
+    rgba(4,5,9,.12) 96%);
+  z-index:1;
+}
+.cta-band--photo > *:not(.cta-band-photo-overlay){ position:relative; z-index:2; }
+@media (max-width: 640px){
+  .cta-band-photo-overlay{
+    background:linear-gradient(180deg,
+      rgba(4,5,9,.96) 0%,
+      rgba(4,5,9,.92) 35%,
+      rgba(4,5,9,.78) 60%,
+      rgba(4,5,9,.58) 100%);
+  }
+}
+
 /* ---------- banner strip (hiring) ---------- */
 .strip{
   background:var(--cream-200);
