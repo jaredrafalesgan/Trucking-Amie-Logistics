@@ -320,7 +320,7 @@ svg{ display:block; }
   display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center;
 }
 .hero-copy .h-xl{ margin-top:18px; }
-.hero-copy .lead{ margin-top:22px; max-width:560px; }
+.hero-copy .lead{ margin-top:22px; max-width:560px; color:var(--on-dark-muted); }
 .hero-ctas{ display:flex; gap:16px; margin-top:38px; flex-wrap:wrap; }
 .hero-meta{
   display:flex; gap:28px; margin-top:46px; flex-wrap:wrap;
@@ -364,6 +364,56 @@ svg{ display:block; }
   .hero-inner{ grid-template-columns:1fr; }
   .hero-visual{ order:-1; max-width:420px; margin:0 auto 20px; }
   .hero-road{ display:none; }
+}
+
+/* ---------- home hero: cinematic truck-photo background ---------- */
+.hero--truck{
+  background-size:cover;
+  background-position:center right;
+  background-repeat:no-repeat;
+  display:flex;
+  align-items:center;
+  min-height:700px;
+  padding:70px 0;
+}
+.hero--truck::before{ display:none; }
+.hero-truck-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(90deg,
+    rgba(4,5,9,.95) 0%,
+    rgba(4,5,9,.86) 22%,
+    rgba(4,5,9,.58) 42%,
+    rgba(4,5,9,.22) 64%,
+    rgba(4,5,9,0) 82%);
+  pointer-events:none;
+  z-index:1;
+}
+.hero--truck .hero-inner{ grid-template-columns:1fr; }
+.hero--truck .hero-copy{ max-width:600px; }
+@media (max-width: 1080px){
+  .hero--truck{ min-height:620px; background-position:68% center; }
+  .hero-truck-overlay{
+    background:linear-gradient(105deg,
+      rgba(4,5,9,.95) 0%,
+      rgba(4,5,9,.88) 34%,
+      rgba(4,5,9,.55) 58%,
+      rgba(4,5,9,.2) 78%,
+      rgba(4,5,9,0) 94%);
+  }
+}
+@media (max-width: 720px){
+  .hero--truck{ min-height:560px; background-position:80% center; padding:110px 0 56px; }
+  .hero--truck .hero-copy{ max-width:100%; }
+  .hero-truck-overlay{
+    background:linear-gradient(150deg,
+      rgba(4,5,9,.94) 0%,
+      rgba(4,5,9,.88) 40%,
+      rgba(4,5,9,.68) 62%,
+      rgba(4,5,9,.48) 100%);
+  }
+}
+@media (max-width: 480px){
+  .hero--truck{ min-height:520px; background-position:88% center; }
 }
 
 /* ==========================================================================
