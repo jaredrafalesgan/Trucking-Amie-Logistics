@@ -30,43 +30,18 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  /* Scroll-spy: highlight the nav link for whichever section is currently in view.
-     Sections vary hugely in height (the offer section is several times taller than
-     the others), so a single IntersectionObserver rootMargin band isn't reliable
-     across all of them — instead, track each section's document-relative top and
-     pick whichever one the scroll position has most recently passed. */
-  var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-  var spySections = [];
-  navLinks.forEach(function(a){
-    var id = a.getAttribute('href').slice(1);
-    var el = document.getElementById(id);
-    if(el && id !== 'top'){ spySections.push({ id: id, el: el, top: 0 }); }
-  });
-  if(spySections.length){
-    var measure = function(){
-      spySections.forEach(function(s){
-        s.top = s.el.getBoundingClientRect().top + window.scrollY;
+  /* Pre-fill "interested in" field on the contact form from a ?service= query param,
+     used by service page CTAs that route enrollment/booking through Contact. */
+  var params = new URLSearchParams(window.location.search);
+  var serviceParam = params.get('service');
+  if(serviceParam){
+    var select = document.getElementById('interest');
+    if(select){
+      var match = Array.prototype.find.call(select.options, function(opt){
+        return opt.value === serviceParam;
       });
-    };
-    var setActive = function(id){
-      navLinks.forEach(function(a){
-        a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
-      });
-    };
-    var onSpyScroll = function(){
-      var headerEl = document.querySelector('.site-header');
-      var offset = (headerEl ? headerEl.offsetHeight : 70) + 40;
-      var y = window.scrollY + offset;
-      var current = spySections[0];
-      for(var i = 0; i < spySections.length; i++){
-        if(spySections[i].top <= y){ current = spySections[i]; }
-      }
-      setActive(current.id);
-    };
-    measure();
-    onSpyScroll();
-    window.addEventListener('scroll', onSpyScroll, { passive: true });
-    window.addEventListener('resize', function(){ measure(); onSpyScroll(); });
+      if(match){ select.value = serviceParam; }
+    }
   }
 
   /* Scroll reveal */
