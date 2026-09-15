@@ -499,16 +499,16 @@ svg{ display:block; }
 .card .price-line{ width:100%; }
 .card .btn{ margin-top:22px; }
 
-/* ---------- certificate preview image ---------- */
-.certificate-frame{
+/* ---------- rounded photo frame (certificate preview, course module screenshots, etc.) ---------- */
+.photo-frame{
   border-radius:var(--radius-lg);
   overflow:hidden;
   box-shadow:var(--shadow-lg);
   border:1px solid rgba(205,164,77,.25);
   transition:transform .3s ease, box-shadow .3s ease;
 }
-.certificate-frame:hover{ transform:translateY(-6px); }
-.certificate-frame img{ display:block; width:100%; height:auto; }
+.photo-frame:hover{ transform:translateY(-6px); }
+.photo-frame img{ display:block; width:100%; height:auto; }
 .card .btn:last-child{ margin-top:auto; }
 .card.text-center{ align-items:center; }
 
