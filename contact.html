@@ -884,63 +884,9 @@ form.card .form-success{ background:rgba(205,164,77,.1); border-color:rgba(205,1
 .mt-16{ margin-top:16px; } .mt-24{ margin-top:24px; } .mt-40{ margin-top:40px; }
 .script-accent{ font-family:var(--font-display); font-style:italic; color:var(--gold-500); }
 
-/* ==========================================================================
-   HOME PAGE MOTION (scoped to index only — everything below keys off .page-index)
-   ========================================================================== */
-
-/* hero copy: choreographed entrance on load (above the fold, so scroll-reveal never fires) */
-.page-index .hero-copy > *{
-  opacity:0;
-  transform:translateY(26px);
-  animation:heroRise .8s cubic-bezier(.16,.8,.3,1) forwards;
-}
-.page-index .hero-copy .eyebrow{ animation-delay:.1s; }
-.page-index .hero-copy .h-xl{ animation-delay:.22s; }
-.page-index .hero-copy .lead{ animation-delay:.36s; }
-.page-index .hero-ctas{ animation-delay:.5s; }
-.page-index .hero-meta{ animation-delay:.64s; }
-@keyframes heroRise{ to{ opacity:1; transform:translateY(0); } }
-
-/* hero video: slow continuous drift for a cinematic feel */
-.page-index .hero-video{ animation:heroZoom 24s ease-in-out infinite alternate; transform-origin:center; }
-@keyframes heroZoom{ from{ transform:scale(1); } to{ transform:scale(1.08); } }
-
-/* service cards: slow photo drift + a little icon pop on hover */
-.page-index .card-photo{ background-size:112%; animation:photoDrift 16s ease-in-out infinite alternate; }
-.page-index .card-photo:hover .icon-wrap{ animation:iconPop .5s ease; }
-@keyframes photoDrift{ from{ background-size:112%; } to{ background-size:124%; } }
-@keyframes iconPop{ 0%{ transform:scale(1) rotate(0); } 45%{ transform:scale(1.16) rotate(-6deg); } 100%{ transform:scale(1) rotate(0); } }
-
-/* "why choose" section: same slow photo drift + checklist items cascade in */
-.page-index .section--dark-photo{ background-size:112%; animation:photoDrift 20s ease-in-out infinite alternate; }
-.page-index .checklist.is-visible li{ animation:checkIn .6s ease both; }
-.page-index .checklist li:nth-child(1){ animation-delay:.05s; }
-.page-index .checklist li:nth-child(2){ animation-delay:.18s; }
-.page-index .checklist li:nth-child(3){ animation-delay:.31s; }
-.page-index .checklist li:nth-child(4){ animation-delay:.44s; }
-@keyframes checkIn{ from{ opacity:0; transform:translateX(-14px); } to{ opacity:1; transform:translateX(0); } }
-
-/* mentorship CTA band: photo drift + a soft breathing gold glow */
-.page-index .cta-band--photo{ background-size:112%; animation:photoDrift 18s ease-in-out infinite alternate, glowPulse 3.2s ease-in-out infinite; }
-@keyframes glowPulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(205,164,77,0); } 50%{ box-shadow:0 0 34px 4px rgba(205,164,77,.28); } }
-
-/* hiring strip: gentle wiggle on the truck icon */
-.page-index .strip .icon-wrap{ animation:wiggle 2.6s ease-in-out infinite; }
-@keyframes wiggle{ 0%,100%{ transform:translateX(0); } 50%{ transform:translateX(4px); } }
-
-@media (prefers-reduced-motion: reduce){
-  .page-index .hero-copy > *{ animation:none; opacity:1; transform:none; }
-  .page-index .hero-video,
-  .page-index .card-photo,
-  .page-index .section--dark-photo,
-  .page-index .cta-band--photo,
-  .page-index .checklist li,
-  .page-index .strip .icon-wrap{ animation:none; }
-}
-
 </style>
 </head>
-<body class="page-contact">
+<body>
 
 <header class="site-header">
   <nav class="nav">
