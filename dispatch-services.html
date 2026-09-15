@@ -424,6 +424,14 @@ svg{ display:block; }
 }
 .hero--truck .hero-inner{ grid-template-columns:1fr; }
 .hero--truck .hero-copy{ max-width:600px; }
+
+/* variant for a centered hero-copy (no directional gradient needed since text isn't anchored to one side) */
+.hero-truck-overlay--center{
+  background:
+    linear-gradient(180deg, rgba(4,5,9,0) 84%, rgba(4,5,9,.92) 100%),
+    linear-gradient(180deg, rgba(4,5,9,.45), rgba(4,5,9,.7));
+}
+.hero--truck .hero-copy.center{ max-width:720px; }
 @media (max-width: 1080px){
   .hero--truck{ min-height:620px; background-position:68% center; }
   .hero-truck-overlay{
