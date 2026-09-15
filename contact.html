@@ -400,12 +400,14 @@ svg{ display:block; }
 }
 .hero-truck-overlay{
   position:absolute; inset:0;
-  background:linear-gradient(90deg,
-    rgba(4,5,9,.95) 0%,
-    rgba(4,5,9,.86) 22%,
-    rgba(4,5,9,.58) 42%,
-    rgba(4,5,9,.22) 64%,
-    rgba(4,5,9,0) 82%);
+  background:
+    linear-gradient(180deg, rgba(4,5,9,0) 84%, rgba(4,5,9,.92) 100%),
+    linear-gradient(90deg,
+      rgba(4,5,9,.95) 0%,
+      rgba(4,5,9,.86) 22%,
+      rgba(4,5,9,.58) 42%,
+      rgba(4,5,9,.22) 64%,
+      rgba(4,5,9,0) 82%);
   pointer-events:none;
   z-index:1;
 }
@@ -414,23 +416,27 @@ svg{ display:block; }
 @media (max-width: 1080px){
   .hero--truck{ min-height:620px; background-position:68% center; }
   .hero-truck-overlay{
-    background:linear-gradient(105deg,
-      rgba(4,5,9,.95) 0%,
-      rgba(4,5,9,.88) 34%,
-      rgba(4,5,9,.55) 58%,
-      rgba(4,5,9,.2) 78%,
-      rgba(4,5,9,0) 94%);
+    background:
+      linear-gradient(180deg, rgba(4,5,9,0) 84%, rgba(4,5,9,.92) 100%),
+      linear-gradient(105deg,
+        rgba(4,5,9,.95) 0%,
+        rgba(4,5,9,.88) 34%,
+        rgba(4,5,9,.55) 58%,
+        rgba(4,5,9,.2) 78%,
+        rgba(4,5,9,0) 94%);
   }
 }
 @media (max-width: 720px){
   .hero--truck{ min-height:560px; background-position:80% center; padding:110px 0 56px; }
   .hero--truck .hero-copy{ max-width:100%; }
   .hero-truck-overlay{
-    background:linear-gradient(150deg,
-      rgba(4,5,9,.94) 0%,
-      rgba(4,5,9,.88) 40%,
-      rgba(4,5,9,.68) 62%,
-      rgba(4,5,9,.48) 100%);
+    background:
+      linear-gradient(180deg, rgba(4,5,9,0) 84%, rgba(4,5,9,.92) 100%),
+      linear-gradient(150deg,
+        rgba(4,5,9,.94) 0%,
+        rgba(4,5,9,.88) 40%,
+        rgba(4,5,9,.68) 62%,
+        rgba(4,5,9,.48) 100%);
   }
 }
 @media (max-width: 480px){
