@@ -138,6 +138,16 @@ svg{ display:block; }
 .section-head{ margin-bottom:48px; }
 .section-head .lead{ margin-top:16px; }
 
+/* ---------- heading beside a row of photo cards ---------- */
+.who-for{ display:flex; align-items:center; gap:40px; }
+.who-for-head{ flex:0 0 280px; }
+.who-for-head .gold-rule{ width:48px; height:3px; background:var(--gold-500); margin-top:20px; border-radius:2px; }
+.who-for-cards{ flex:1; min-width:0; }
+@media (max-width: 900px){
+  .who-for{ flex-direction:column; align-items:stretch; gap:28px; }
+  .who-for-head{ flex-basis:auto; }
+}
+
 /* ---------- buttons ---------- */
 .btn{
   --btn-pad-y:15px;
