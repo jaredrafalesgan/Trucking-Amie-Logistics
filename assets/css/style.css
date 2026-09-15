@@ -868,9 +868,34 @@ svg{ display:block; }
   background:rgba(205,164,77,.08);
   padding:26px 28px;
 }
-.payment-box h4{ color:var(--gold-300); font-size:1.05rem; }
+.payment-box h4{ display:flex; align-items:center; gap:10px; color:var(--gold-300); font-size:1.05rem; }
+.payment-box h4 svg{ width:20px; height:20px; flex-shrink:0; }
 .payment-box p{ margin-top:8px; color:var(--on-dark-muted); font-size:.92rem; line-height:1.6; }
 .payment-box strong{ color:var(--white); }
+
+/* ---------- testimonials ---------- */
+.testimonial{
+  display:flex; flex-direction:column;
+  height:100%;
+  background:var(--white);
+  border:1px solid rgba(21,22,28,.06);
+  border-radius:var(--radius-lg);
+  padding:32px 28px;
+  box-shadow:var(--shadow-md);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.testimonial:hover{ transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+.testimonial-quote-mark{ font-family:var(--font-display); font-size:2.6rem; line-height:1; color:var(--gold-500); }
+.testimonial p{ margin-top:8px; color:var(--ink-700); font-size:.96rem; line-height:1.65; }
+.testimonial-author{ display:flex; align-items:center; gap:12px; margin-top:22px; }
+.testimonial-avatar{
+  width:44px; height:44px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(155deg,var(--gold-100),var(--gold-300));
+  font-family:var(--font-display); font-weight:700; font-size:.95rem; color:var(--navy-900);
+}
+.testimonial-author strong{ display:block; font-size:.95rem; color:var(--ink-900); }
+.testimonial-author span{ display:block; font-size:.82rem; color:var(--ink-500); margin-top:1px; }
 
 /* light-background variant, for a form placed on a cream/white card (e.g. the contact form) */
 form.card .field label{ color:var(--ink-500); }
