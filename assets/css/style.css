@@ -790,6 +790,43 @@ svg{ display:block; }
 .strip-text h4{ font-size:1.05rem; }
 .strip-text p{ font-size:.88rem; color:var(--ink-700); margin-top:2px; }
 
+/* ---------- full-bleed photo CTA strip (photo bleeds in from one side, fades to a solid dark panel) ---------- */
+.strip--photo{
+  position:relative;
+  overflow:hidden;
+  background-size:cover;
+  background-position:center 35%;
+  background-repeat:no-repeat;
+  border-top:none;
+  border-bottom:none;
+  padding:48px 0;
+  color:var(--white);
+}
+.strip-photo-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(90deg,
+    rgba(4,5,9,.05) 0%,
+    rgba(4,5,9,.55) 38%,
+    rgba(4,5,9,.9) 60%,
+    rgba(4,5,9,.97) 100%);
+  z-index:1;
+}
+.strip--photo > .container{ position:relative; z-index:2; }
+.strip--photo .lead, .strip--photo p{ color:var(--on-dark-muted); }
+.strip-mini{ display:flex; gap:24px; flex-wrap:wrap; }
+.strip-mini div{ display:flex; align-items:center; gap:8px; font-family:var(--font-sans); font-size:12px; letter-spacing:.04em; color:var(--on-dark-muted); text-transform:uppercase; white-space:nowrap; }
+.strip-mini svg{ width:16px; height:16px; stroke:var(--gold-300); fill:none; stroke-width:1.6; flex-shrink:0; }
+@media (max-width: 900px){
+  .strip--photo{ background-position:78% center; }
+  .strip-photo-overlay{
+    background:linear-gradient(165deg,
+      rgba(4,5,9,.2) 0%,
+      rgba(4,5,9,.8) 38%,
+      rgba(4,5,9,.95) 62%,
+      rgba(4,5,9,.98) 100%);
+  }
+}
+
 /* ---------- disclaimer box ---------- */
 /* ---------- forms ---------- */
 .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
