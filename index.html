@@ -149,6 +149,12 @@ p{margin:0;}
 .biz-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
 .biz-card:hover img{transform:scale(1.06);}
 .biz-card::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,6,.94) 8%,rgba(5,5,6,.55) 46%,rgba(5,5,6,.15) 72%);z-index:1;}
+.live-preview{position:absolute;inset:0;overflow:hidden;background:#0d0d11;}
+.live-preview-bar{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:6px;padding:9px 12px;background:rgba(5,5,6,.6);backdrop-filter:blur(6px);}
+.live-preview-bar span{width:6px;height:6px;border-radius:50%;background:rgba(245,243,239,.28);}
+.live-preview-bar .url{margin-left:6px;font-size:.6rem;letter-spacing:.03em;color:var(--gray-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.live-preview iframe{position:absolute;top:32px;left:0;width:1440px;height:2200px;border:0;pointer-events:none;transform-origin:top left;background:#fff;}
+.biz-card:hover .live-preview iframe{transition:transform .6s ease;}
 .biz-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:34px 28px;}
 .biz-num{font-family:var(--serif);font-size:.85rem;color:var(--gold-soft);letter-spacing:.08em;margin-bottom:14px;}
 .biz-content h3{font-size:1.5rem;color:#fff;margin-bottom:10px;}
@@ -300,7 +306,10 @@ p{margin:0;}
         </div>
       </article>
       <article class="biz-card" data-reveal style="--rd:.1s;">
-        <img src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/salon-preview.png" alt="A-1 FantasyBar LLC — salon suites" loading="lazy" />
+        <div class="live-preview">
+          <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/salon</span></div>
+          <iframe src="https://www.amieslogistics.org/salon" title="A-1 FantasyBar LLC live preview" loading="lazy"></iframe>
+        </div>
         <div class="biz-content">
           <p class="biz-num">02</p>
           <h3>Salon &amp; Beauty</h3>
@@ -309,7 +318,10 @@ p{margin:0;}
         </div>
       </article>
       <article class="biz-card" data-reveal style="--rd:.2s;">
-        <img src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/credit-repair-preview.png" alt="A-1 Credit Solutions LLC — credit repair" loading="lazy" />
+        <div class="live-preview">
+          <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/credit-repair</span></div>
+          <iframe src="https://www.amieslogistics.org/credit-repair" title="A-1 Credit Solutions LLC live preview" loading="lazy"></iframe>
+        </div>
         <div class="biz-content">
           <p class="biz-num">03</p>
           <h3>Credit Repair</h3>
@@ -528,6 +540,21 @@ p{margin:0;}
     testiWrap.addEventListener('mouseleave', startTimer);
   }
   if(slides.length){ startTimer(); }
+
+  /* Scale live-preview iframes to fill their card at any width */
+  var previews = document.querySelectorAll('.live-preview');
+  function scalePreviews(){
+    previews.forEach(function(wrap){
+      var iframe = wrap.querySelector('iframe');
+      if(!iframe) return;
+      var scale = wrap.offsetWidth / 1440;
+      iframe.style.transform = 'scale(' + scale.toFixed(4) + ')';
+    });
+  }
+  if(previews.length){
+    scalePreviews();
+    window.addEventListener('resize', scalePreviews);
+  }
 })();
 </script>
 
