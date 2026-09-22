@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>A-1 Credit Solutions LLC | Credit Repair &amp; Business Credit Guides</title>
+<meta name="description" content="A-1 Credit Solutions LLC helps you clean up your credit, remove hard inquiries, and build business credit — step-by-step guides and hands-on support." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#07070a;
+  --near-black:#101014;
+  --panel:#16161d;
+  --line:rgba(212,175,90,.18);
+  --gold-100:#f6e6bd;
+  --gold-300:#e8c877;
+  --gold-500:#cda44d;
+  --gold-600:#b8893a;
+  --cream:#f3ede1;
+  --ink-700:rgba(243,237,225,.72);
+  --ink-500:rgba(243,237,225,.52);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Jost',Arial,sans-serif;
+  --container:1180px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{
+  margin:0;
+  background:var(--black);
+  color:var(--cream);
+  font-family:var(--sans);
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 24px;}
+h1,h2,h3{font-family:var(--serif);font-weight:700;margin:0;line-height:1.15;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold-300);margin:0 0 14px;
+}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--gold-500);}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;border-radius:999px;font-size:.85rem;font-weight:600;
+  letter-spacing:.04em;text-transform:uppercase;border:1px solid transparent;
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;
+  cursor:pointer;white-space:nowrap;
+}
+.btn-gold{background:linear-gradient(135deg,var(--gold-300),var(--gold-600));color:#12100a;box-shadow:0 8px 22px rgba(184,137,58,.28);}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(184,137,58,.4);}
+.btn-outline{background:transparent;border-color:rgba(243,237,225,.3);color:var(--cream);}
+.btn-outline:hover{border-color:var(--gold-300);color:var(--gold-100);}
+
+/* ---------- nav ---------- */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(7,7,10,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.nav{max-width:var(--container);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.nav-brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:1.05rem;color:#fff;}
+.nav-brand .mark{color:var(--gold-300);}
+.nav-links{display:flex;gap:28px;font-size:.85rem;}
+.nav-links a{color:var(--ink-700);transition:color .2s ease;}
+.nav-links a:hover{color:var(--gold-300);}
+.nav-cta{display:flex;align-items:center;gap:14px;}
+.nav-toggle{display:none;background:none;border:0;color:#fff;padding:6px;cursor:pointer;}
+.nav-toggle svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
+@media (max-width:860px){
+  .nav-links{display:none;}
+  .nav-cta .btn{display:none;}
+  .nav-toggle{display:block;}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:96px 0 90px;overflow:hidden;}
+.hero .orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;}
+.hero .orb-1{width:520px;height:520px;background:radial-gradient(circle,rgba(212,175,90,.28),transparent 70%);top:-160px;left:-120px;}
+.hero .orb-2{width:420px;height:420px;background:radial-gradient(circle,rgba(212,175,90,.16),transparent 70%);bottom:-140px;right:-100px;}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+.hero h1{font-size:clamp(2.1rem,4vw,3.1rem);color:#fff;margin-bottom:18px;}
+.hero h1 .gold{background:linear-gradient(100deg,var(--gold-300),var(--gold-100),var(--gold-500));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero p.desc{font-size:1.02rem;line-height:1.75;color:var(--ink-700);max-width:480px;margin:0 0 30px;}
+.hero .cta-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:34px;}
+.hero .badges{display:flex;gap:22px;flex-wrap:wrap;padding-top:26px;border-top:1px solid var(--line);}
+.hero .badges span{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500);display:flex;align-items:center;gap:8px;}
+.hero .badges svg{width:16px;height:16px;stroke:var(--gold-300);fill:none;stroke-width:2;}
+.hero-photo{position:relative;justify-self:center;width:100%;max-width:400px;}
+.hero-photo img{border-radius:20px;border:1px solid var(--line);box-shadow:0 30px 70px rgba(0,0,0,.55);}
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;gap:44px;text-align:center;}
+  .hero p.desc{margin-left:auto;margin-right:auto;}
+  .hero .cta-row,.hero .badges{justify-content:center;}
+  .hero-photo{max-width:300px;}
+}
+
+/* ---------- guides / services ---------- */
+.section{padding:90px 0;}
+.section-head{max-width:640px;margin:0 auto 52px;text-align:center;}
+.section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);color:#fff;margin-top:10px;}
+.guides-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.guide-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .25s ease,border-color .25s ease;}
+.guide-card:hover{transform:translateY(-6px);border-color:rgba(212,175,90,.45);}
+.guide-card img{width:100%;height:280px;object-fit:cover;}
+.guide-card-body{padding:22px 24px 26px;}
+.guide-card-body h3{font-size:1.1rem;color:#fff;margin-bottom:8px;}
+.guide-card-body p{font-size:.88rem;line-height:1.6;color:var(--ink-500);margin:0;}
+@media (max-width:960px){.guides-grid{grid-template-columns:1fr;}}
+
+/* ---------- cta band ---------- */
+.cta-band{background:linear-gradient(135deg,var(--near-black),#1b1710);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:70px 0;text-align:center;}
+.cta-band h2{color:#fff;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:14px;}
+.cta-band p{color:var(--ink-700);max-width:520px;margin:0 auto 30px;font-size:1rem;line-height:1.7;}
+
+/* ---------- footer ---------- */
+.site-footer{padding:48px 0 32px;border-top:1px solid var(--line);}
+.footer-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;}
+.footer-row p{color:var(--ink-500);font-size:.82rem;margin:0;}
+.footer-row .links{display:flex;gap:20px;font-size:.82rem;}
+.footer-row .links a{color:var(--ink-700);}
+.footer-row .links a:hover{color:var(--gold-300);}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="#home" class="nav-brand"><span class="mark">A-1</span>&nbsp;Credit Solutions</a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#guides">Guides</a>
+      <a href="#why">Why Us</a>
+      <a href="/contact?service=credit-repair">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="/contact?service=credit-repair" class="btn btn-gold">Get Started</a>
+      <button class="nav-toggle" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Credit Repair &amp; Business Funding</p>
+      <h1>Clean Credit.<br><span class="gold">Real Opportunities.</span></h1>
+      <p class="desc">A-1 Credit Solutions LLC gives you the step-by-step guides and hands-on support to remove negative items, raise your scores, and build the business credit that opens doors — cars, homes, and funding.</p>
+      <div class="cta-row">
+        <a href="/contact?service=credit-repair" class="btn btn-gold">Get Started
+          <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#guides" class="btn btn-outline">View Guides</a>
+      </div>
+      <div class="badges">
+        <span><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/></svg> Clean Credit</span>
+        <span><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/></svg> Better Scores</span>
+        <span><svg viewBox="0 0 24 24"><path d="M12 2v20M5 8h14M5 16h14"/></svg> More Opportunities</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="assets/img/gateway/credit-repair-preview.png" alt="A-1 Credit Solutions LLC — DIY Credit Repair guide" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<section class="section" id="guides">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow" style="justify-content:center;">Step-By-Step Guides</p>
+      <h2>Everything You Need to Rebuild Your Credit</h2>
+    </div>
+    <div class="guides-grid">
+      <div class="guide-card">
+        <img src="assets/img/gateway/credit-repair-preview.png" alt="DIY Credit Repair guide" loading="lazy" />
+        <div class="guide-card-body">
+          <h3>DIY Credit Repair</h3>
+          <p>A step-by-step guide to disputing negative items and repairing your credit on your own timeline.</p>
+        </div>
+      </div>
+      <div class="guide-card">
+        <img src="assets/img/gateway/credit-repair-inquiry.png" alt="24 Hour Credit Inquiry Removal guide" loading="lazy" />
+        <div class="guide-card-body">
+          <h3>24-Hour Inquiry Removal</h3>
+          <p>Learn the exact process to get hard inquiries removed from your credit report — fast.</p>
+        </div>
+      </div>
+      <div class="guide-card">
+        <img src="assets/img/gateway/credit-repair-business.png" alt="Mastering Business Credit guide" loading="lazy" />
+        <div class="guide-card-body">
+          <h3>Mastering Business Credit</h3>
+          <p>Structure your business and build funding-ready business credit, separate from your personal file.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" id="why">
+  <div class="wrap">
+    <h2>Ready to Take Control of Your Credit?</h2>
+    <p>Tell us where you're starting from and we'll point you to the right guide or one-on-one support.</p>
+    <a href="/contact?service=credit-repair" class="btn btn-gold">Get Started</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>&copy; 2026 A-1 Credit Solutions LLC. All rights reserved.</p>
+    <div class="links">
+      <a href="/">All Services</a>
+      <a href="/trucking">Trucking</a>
+      <a href="/salon">Salon</a>
+      <a href="/contact?service=credit-repair">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
