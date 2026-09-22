@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Site Preview | Amie's Logistics LLC</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Jost:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#07080c;
+  --navy-900:#0b0d14;
+  --navy-800:#12141d;
+  --navy-700:#1a1d29;
+  --navy-line:rgba(212,175,90,.16);
+  --gold-100:#f6e6bd;
+  --gold-300:#e8c877;
+  --gold-500:#cda44d;
+  --gold-600:#b8893a;
+  --cream:#f7f3ea;
+  --ink:#1c1c1c;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--navy-950);
+  color:var(--cream);
+  font-family:'Inter',system-ui,sans-serif;
+}
+.wrap{max-width:1320px;margin:0 auto;padding:56px 24px 80px;}
+.top{text-align:center;margin-bottom:48px;}
+.top .eyebrow{
+  font-family:'Jost',sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-size:.78rem;
+  color:var(--gold-300);
+  margin:0 0 12px;
+}
+.top h1{
+  font-family:'Playfair Display',serif;
+  font-weight:700;
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  margin:0 0 12px;
+  color:#fff;
+}
+.top p{
+  max-width:640px;
+  margin:0 auto;
+  color:rgba(247,243,234,.65);
+  font-size:.98rem;
+  line-height:1.6;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:28px;
+}
+.card{
+  background:var(--navy-800);
+  border:1px solid var(--navy-line);
+  border-radius:14px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition:transform .2s ease,border-color .2s ease;
+}
+.card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(212,175,90,.4);
+}
+.thumb{
+  position:relative;
+  width:100%;
+  height:220px;
+  overflow:hidden;
+  background:var(--navy-900);
+  border-bottom:1px solid var(--navy-line);
+}
+.thumb iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:1440px;
+  height:1600px;
+  border:0;
+  transform:scale(0.213);
+  transform-origin:top left;
+  pointer-events:none;
+  background:#fff;
+}
+.thumb a.open-overlay{
+  position:absolute;
+  inset:0;
+  z-index:2;
+}
+.card-body{
+  padding:20px 22px 22px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+.card-body .tag{
+  font-family:'Jost',sans-serif;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-size:.68rem;
+  color:var(--gold-300);
+  margin:0 0 8px;
+}
+.card-body h2{
+  font-family:'Playfair Display',serif;
+  font-size:1.2rem;
+  margin:0 0 8px;
+  color:#fff;
+}
+.card-body p{
+  font-size:.87rem;
+  line-height:1.55;
+  color:rgba(247,243,234,.62);
+  margin:0 0 18px;
+  flex:1;
+}
+.card-body a.btn{
+  align-self:flex-start;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 18px;
+  border-radius:999px;
+  font-size:.85rem;
+  font-weight:600;
+  text-decoration:none;
+  background:linear-gradient(135deg,var(--gold-300),var(--gold-600));
+  color:var(--navy-950);
+}
+.card-body a.btn:hover{opacity:.9;}
+.foot{
+  text-align:center;
+  margin-top:56px;
+  color:rgba(247,243,234,.4);
+  font-size:.8rem;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <p class="eyebrow">Internal Preview</p>
+    <h1>All Pages at a Glance</h1>
+    <p>Live thumbnails of every page on the site. Click a card to open the full page in a new tab.</p>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="thumb"><iframe src="/index.html" loading="lazy" title="Home preview"></iframe><a class="open-overlay" href="/index.html" target="_blank" rel="noopener" aria-label="Open Home page"></a></div>
+      <div class="card-body">
+        <p class="tag">Home</p>
+        <h2>Home</h2>
+        <p>Trucking education, dispatch training, and mentorship from Amie's Logistics LLC.</p>
+        <a class="btn" href="/index.html" target="_blank" rel="noopener">Open Page &rarr;</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb"><iframe src="/services.html" loading="lazy" title="Services preview"></iframe><a class="open-overlay" href="/services.html" target="_blank" rel="noopener" aria-label="Open Services page"></a></div>
+      <div class="card-body">
+        <p class="tag">Overview</p>
+        <h2>Services</h2>
+        <p>Explore Amie's Logistics LLC services: dispatching course, dispatch services, trucking mentorship, and digital products.</p>
+        <a class="btn" href="/services.html" target="_blank" rel="noopener">Open Page &rarr;</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb"><iframe src="/dispatching-course.html" loading="lazy" title="Dispatching Course preview"></iframe><a class="open-overlay" href="/dispatching-course.html" target="_blank" rel="noopener" aria-label="Open Dispatching Course page"></a></div>
+      <div class="card-body">
+        <p class="tag">Product &middot; $149.99</p>
+        <h2>Dispatching Course</h2>
+        <p>The self-paced course that teaches you how to dispatch trucks and run a profitable operation.</p>
+        <a class="btn" href="/dispatching-course.html" target="_blank" rel="noopener">Open Page &rarr;</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb"><iframe src="/dispatch-services.html" loading="lazy" title="Dispatch Services preview"></iframe><a class="open-overlay" href="/dispatch-services.html" target="_blank" rel="noopener" aria-label="Open Dispatch Services page"></a></div>
+      <div class="card-body">
+        <p class="tag">Service &middot; Custom Quote</p>
+        <h2>Dispatch Services</h2>
+        <p>Professional truck dispatch services: rate negotiation, route planning, credit checks, and paperwork handling.</p>
+        <a class="btn" href="/dispatch-services.html" target="_blank" rel="noopener">Open Page &rarr;</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb"><iframe src="/mentorship.html" loading="lazy" title="Mentorship preview"></iframe><a class="open-overlay" href="/mentorship.html" target="_blank" rel="noopener" aria-label="Open Mentorship page"></a></div>
+      <div class="card-body">
+        <p class="tag">Subscription &middot; $249.99/mo</p>
+        <h2>Mentorship</h2>
+        <p>Hands-on trucking and transportation mentorship — weekly Zoom guidance for truck owners, operators, and dispatchers.</p>
+        <a class="btn" href="/mentorship.html" target="_blank" rel="noopener">Open Page &rarr;</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb"><iframe src="/digital-products.html" loading="lazy" title="Digital Products preview"></iframe><a class="open-overlay" href="/digital-products.html" target="_blank" rel="noopener" aria-label="Open Digital Products page"></a></div>
+      <div class="card-body">
+        <p class="tag">Product &middot; $34.99</p>
+        <h2>Digital Products</h2>
+        <p>Digital ebooks and workbooks: practical dispatching guides to help you learn and grow at your own pace.</p>
+        <a class="btn" href="/digital-products.html" target="_blank" rel="noopener">Open Page &rarr;</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb"><iframe src="/about.html" loading="lazy" title="About preview"></iframe><a class="open-overlay" href="/about.html" target="_blank" rel="noopener" aria-label="Open About page"></a></div>
+      <div class="card-body">
+        <p class="tag">Company</p>
+        <h2>About</h2>
+        <p>About Amie's Logistics LLC — trucking education, dispatch training, and mentorship, all in one place.</p>
+        <a class="btn" href="/about.html" target="_blank" rel="noopener">Open Page &rarr;</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb"><iframe src="/contact.html" loading="lazy" title="Contact preview"></iframe><a class="open-overlay" href="/contact.html" target="_blank" rel="noopener" aria-label="Open Contact page"></a></div>
+      <div class="card-body">
+        <p class="tag">Contact</p>
+        <h2>Contact</h2>
+        <p>Contact Amie's Logistics LLC about dispatching, mentorship, digital products, or CDL driving positions.</p>
+        <a class="btn" href="/contact.html" target="_blank" rel="noopener">Open Page &rarr;</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="thumb"><iframe src="/careers.html" loading="lazy" title="Careers preview"></iframe><a class="open-overlay" href="/careers.html" target="_blank" rel="noopener" aria-label="Open Careers page"></a></div>
+      <div class="card-body">
+        <p class="tag">Careers</p>
+        <h2>Careers &mdash; CDL Drivers</h2>
+        <p>Amie's Logistics LLC is hiring qualified CDL box truck drivers. Competitive pay and consistent freight.</p>
+        <a class="btn" href="/careers.html" target="_blank" rel="noopener">Open Page &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+  <p class="foot">Internal preview page &mdash; not linked from site navigation.</p>
+</div>
+</body>
+</html>
