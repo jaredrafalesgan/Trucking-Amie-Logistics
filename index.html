@@ -700,27 +700,19 @@ p{margin:0;}
      bleeding into whatever section follows it. Frames without that
      attribute (the smaller Explore cards) keep the plain width-fit scale.
 
-     Mobile browsers block a plain <iframe src="cross-origin-url">
-     outright (confirmed on a real device, on the site's own pages, not
-     just this preview) — that's X-Frame-Options/CSP enforcement at the
-     browser level, which no client-side trick can override for a real
-     navigation. So this fetches each page's HTML through a CORS proxy
-     and injects it with iframe.srcdoc instead: srcdoc assigns content
-     directly, it's never a navigation to the original URL, so that
-     browser-level frame check never runs. A <base> tag is injected so
-     the page's own relative CSS/JS/image URLs still resolve against the
-     real site. fetch() failures — unlike iframe navigation failures —
-     are actually catchable, so this can genuinely fall back: proxy
-     fails → try a second proxy → still fails → plain iframe src (works
-     on desktop) → that has no way to signal failure either, so mobile's
-     always-visible screenshot underneath is what actually shows if
-     every live attempt has failed silently. */
+     Desktop gets a real live iframe (confirmed working there). Mobile
+     browsers block a plain cross-origin iframe navigation outright —
+     confirmed on a real device, on the site's own pages directly, not
+     just this preview — and every client-side workaround tried
+     (mount/unmount, native lazy-load, fetch-through-a-CORS-proxy into
+     srcdoc) failed the same way, which points at a platform-level
+     policy no script here can override. So mobile intentionally does
+     not attempt an iframe at all right now and just keeps the
+     always-visible screenshot; a recorded video of each live site is
+     the planned replacement for that once it's added. */
   var previews = document.querySelectorAll('.live-preview');
   var BAR_H = 32;
-  var CORS_PROXIES = [
-    function(u){ return 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u); },
-    function(u){ return 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u); }
-  ];
+  var isDesktop = window.matchMedia('(min-width:901px)').matches;
   function scaleOne(wrap, iframe){
     var heroHAttr = wrap.getAttribute('data-hero-h');
     if(heroHAttr){
@@ -739,51 +731,19 @@ p{margin:0;}
       if(iframe){ scaleOne(wrap, iframe); }
     });
   }
-  function injectBase(html, baseUrl){
-    var tag = '<base href="' + baseUrl + '">';
-    if(/<head[^>]*>/i.test(html)){ return html.replace(/<head([^>]*)>/i, '<head$1>' + tag); }
-    return tag + html;
-  }
-  function fetchViaProxies(url, i){
-    i = i || 0;
-    if(i >= CORS_PROXIES.length){ return Promise.reject(new Error('all proxies failed')); }
-    var controller = ('AbortController' in window) ? new AbortController() : null;
-    var timer = controller ? setTimeout(function(){ controller.abort(); }, 7000) : null;
-    return fetch(CORS_PROXIES[i](url), controller ? { signal: controller.signal } : {})
-      .then(function(res){
-        if(timer){ clearTimeout(timer); }
-        if(!res.ok){ throw new Error('bad status ' + res.status); }
-        return res.text();
-      })
-      .catch(function(){
-        if(timer){ clearTimeout(timer); }
-        return fetchViaProxies(url, i + 1);
-      });
-  }
-  function mountDirectIframe(wrap, url){
-    var iframe = document.createElement('iframe');
-    iframe.src = url;
-    iframe.title = wrap.getAttribute('data-title') || '';
-    iframe.loading = 'lazy';
-    iframe.setAttribute('aria-hidden', 'true');
-    wrap.appendChild(iframe);
-    scaleOne(wrap, iframe);
-  }
-  previews.forEach(function(wrap){
-    var url = wrap.getAttribute('data-src');
-    if(!url) return;
-    fetchViaProxies(url).then(function(html){
+  if(isDesktop){
+    previews.forEach(function(wrap){
+      var url = wrap.getAttribute('data-src');
+      if(!url) return;
       var iframe = document.createElement('iframe');
-      iframe.srcdoc = injectBase(html, url);
+      iframe.src = url;
       iframe.title = wrap.getAttribute('data-title') || '';
+      iframe.loading = 'lazy';
       iframe.setAttribute('aria-hidden', 'true');
-      iframe.setAttribute('sandbox', 'allow-scripts');
       wrap.appendChild(iframe);
       scaleOne(wrap, iframe);
-    }).catch(function(){
-      if(window.matchMedia('(min-width:901px)').matches){ mountDirectIframe(wrap, url); }
     });
-  });
+  }
   if(previews.length){
     window.addEventListener('resize', scaleAllMounted);
   }
