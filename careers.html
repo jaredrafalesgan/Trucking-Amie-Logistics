@@ -884,6 +884,30 @@ svg{ display:block; }
 .form-success.is-shown{ display:block; }
 @media (max-width:700px){ .form-grid{ grid-template-columns:1fr; } }
 
+.ghl-embed-card{
+  background:rgba(26,29,41,.55);
+  backdrop-filter:blur(14px) saturate(130%);
+  -webkit-backdrop-filter:blur(14px) saturate(130%);
+  border:1px solid rgba(212,175,90,.22);
+  border-radius:22px;
+  padding:10px;
+  box-shadow:var(--shadow-lg);
+  transition:border-color .3s ease;
+}
+.ghl-embed-card:hover{ border-color:rgba(212,175,90,.4); }
+.ghl-embed-card iframe{
+  display:block;
+  width:100%;
+  min-height:640px;
+  border:none;
+  border-radius:15px;
+  background:var(--cream-100);
+}
+@media (max-width:600px){
+  .ghl-embed-card{ border-radius:16px; padding:6px; }
+  .ghl-embed-card iframe{ border-radius:11px; min-height:720px; }
+}
+
 .payment-box{
   border:1px solid rgba(205,164,77,.35);
   border-radius:var(--radius-md);
@@ -1107,39 +1131,25 @@ form.card .form-success{ background:rgba(205,164,77,.1); border-color:rgba(205,1
       <h2 class="h-lg mt-16 center">Ready to Get Started?</h2>
       <p class="lead center">Fill out the form below and our team will follow up with next steps.</p>
     </div>
-    <!-- GHL: replace this form with a native GoHighLevel Form / Survey element so applications reach your CRM. -->
-    <form data-placeholder-form novalidate data-reveal>
-      <div class="form-grid">
-        <div class="field">
-          <label for="cname">Full Name</label>
-          <input id="cname" name="name" type="text" placeholder="Your name" required />
-        </div>
-        <div class="field">
-          <label for="cphone">Phone</label>
-          <input id="cphone" name="phone" type="tel" placeholder="(555) 555-5555" required />
-        </div>
-        <div class="field">
-          <label for="cemail">Email</label>
-          <input id="cemail" name="email" type="email" placeholder="you@email.com" required />
-        </div>
-        <div class="field">
-          <label for="cdl">CDL Class</label>
-          <select id="cdl" name="cdl">
-            <option value="">Select an option</option>
-            <option value="A">Class A</option>
-            <option value="B">Class B</option>
-            <option value="other">Other / Not Sure</option>
-          </select>
-        </div>
-        <div class="field full">
-          <label for="experience">Driving Experience</label>
-          <textarea id="experience" name="experience" rows="4" placeholder="Tell us about your commercial driving experience"></textarea>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-gold mt-24">Submit Application <svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
-      <p class="form-note">This form doesn't submit anywhere yet &mdash; connect it to your CRM or applicant tracker to start receiving applications.</p>
-      <div class="form-success">Thanks for applying! This is a placeholder confirmation &mdash; connect this form to your CRM so real applications reach you.</div>
-    </form>
+    <div class="ghl-embed-card" data-reveal>
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/HvPW2BQaBDQP2vwuCHdV"
+        style="width:100%;min-height:640px;border:none;border-radius:15px"
+        id="inline-HvPW2BQaBDQP2vwuCHdV"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="CDL Driver Application"
+        data-height="640"
+        data-layout-iframe-id="inline-HvPW2BQaBDQP2vwuCHdV"
+        data-form-id="HvPW2BQaBDQP2vwuCHdV"
+        title="CDL Driver Application">
+      </iframe>
+    </div>
   </div>
 </section>
 
@@ -1260,5 +1270,6 @@ form.card .form-success{ background:rgba(205,164,77,.1); border-color:rgba(205,1
 })();
 
 </script>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </body>
 </html>
