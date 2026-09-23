@@ -195,7 +195,7 @@ p{margin:0;}
    place of the still screenshot (desktop keeps its real live iframe).
    Sits on top of .preview-fallback in the DOM so it covers the image
    the instant it starts, and shares its poster so there's no flash. */
-.preview-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;z-index:0;}
+.preview-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;z-index:0;background:#0d0d11;}
 .live-preview-bar{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:6px;padding:9px 12px;background:#0d0d11;}
 .live-preview-bar span{width:6px;height:6px;border-radius:50%;background:rgba(245,243,239,.28);}
 .live-preview-bar .url{margin-left:6px;font-size:.6rem;letter-spacing:.03em;color:var(--gray-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
