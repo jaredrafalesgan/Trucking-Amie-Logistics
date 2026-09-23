@@ -623,49 +623,18 @@ p{margin:0;}
     });
   });
 
-  /* Hero live website tour: each iframe auto-scrolls top -> bottom, pauses,
-     then crossfades to the next business. Only the iframe's own inner
-     document scrolls — window.scrollTo is never called, so the homepage
-     itself never moves. */
+  /* Hero live website preview: each business's own hero section loads in a
+     live iframe (top of the page only, no scrolling) and holds, then
+     crossfades to the next business. Showing just the hero — instead of
+     scrolling further into each site — avoids exposing layout issues that
+     live deeper in those pages. */
   var heroSlides = document.querySelectorAll('.hero-preview-slide');
   var heroIndicators = document.querySelectorAll('.hero-indicator');
-  var heroReduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var HERO_SCROLL_MS = 7000;
-  var HERO_PAUSE_MS = 1600;
-  var heroRafId = null;
+  var HERO_HOLD_MS = 6000;
   var heroAdvanceTimer = null;
   var heroCurrentIndex = 0;
 
-  function heroScrollTop(iframe){
-    try { iframe.contentWindow.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } catch(e) { /* cross-origin: leave as-is */ }
-  }
-
-  function heroAnimateScroll(iframe, duration, onDone){
-    var start = null;
-    var win = iframe.contentWindow;
-    var max = 0;
-    try { max = Math.max(0, win.document.documentElement.scrollHeight - win.innerHeight); } catch(e) { /* cross-origin */ }
-    function ease(t){ return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
-    function step(ts){
-      if(start === null){ start = ts; }
-      var t = Math.min((ts - start) / duration, 1);
-      try { win.scrollTo({ top: max * ease(t), left: 0, behavior: 'instant' }); } catch(e) { /* cross-origin: can't drive the scroll — the preview still shows the live page */ }
-      if(t < 1){ heroRafId = requestAnimationFrame(step); }
-      else if(onDone){ onDone(); }
-    }
-    heroRafId = requestAnimationFrame(step);
-  }
-
-  function heroWhenReady(iframe, cb){
-    if(iframe.__heroReady){ cb(); return; }
-    var done = false;
-    function finish(){ if(done) return; done = true; iframe.__heroReady = true; cb(); }
-    iframe.addEventListener('load', finish, { once: true });
-    setTimeout(finish, 2500);
-  }
-
   function stopHeroCycle(){
-    if(heroRafId){ cancelAnimationFrame(heroRafId); heroRafId = null; }
     if(heroAdvanceTimer){ clearTimeout(heroAdvanceTimer); heroAdvanceTimer = null; }
   }
 
@@ -677,19 +646,7 @@ p{margin:0;}
       b.classList.toggle('is-active', active);
       b.setAttribute('aria-selected', active ? 'true' : 'false');
     });
-    var iframe = heroSlides[i] && heroSlides[i].querySelector('iframe');
-    if(!iframe){ return; }
-    var goNext = function(){ runHeroSlide((i + 1) % heroSlides.length); };
-    if(heroReduceMotion){
-      heroAdvanceTimer = setTimeout(goNext, 4000);
-      return;
-    }
-    heroWhenReady(iframe, function(){
-      heroScrollTop(iframe);
-      heroAnimateScroll(iframe, HERO_SCROLL_MS, function(){
-        heroAdvanceTimer = setTimeout(goNext, HERO_PAUSE_MS);
-      });
-    });
+    heroAdvanceTimer = setTimeout(function(){ runHeroSlide((i + 1) % heroSlides.length); }, HERO_HOLD_MS);
   }
 
   heroIndicators.forEach(function(btn){
@@ -698,16 +655,6 @@ p{margin:0;}
       runHeroSlide(parseInt(btn.getAttribute('data-index'), 10));
     });
   });
-
-  /* Tapping/clicking the preview itself restarts that business's scroll-through from the top */
-  var heroStage = document.getElementById('heroPreviewStage');
-  if(heroStage){
-    heroStage.style.cursor = 'pointer';
-    heroStage.addEventListener('click', function(){
-      stopHeroCycle();
-      runHeroSlide(heroCurrentIndex);
-    });
-  }
 
   if(heroSlides.length){ runHeroSlide(0); }
 
