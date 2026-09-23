@@ -741,7 +741,7 @@ p{margin:0;}
   var previews = document.querySelectorAll('.live-preview');
   var BAR_H = 32;
   var isDesktop = window.matchMedia('(min-width:901px)').matches;
-  var NAV_REVEAL = 60; // small upward push -- crops just a sliver off the top of the target's nav instead of hiding it or showing it in full
+  var NAV_REVEAL = 70; // very small upward push -- crops only a hairline off the top of the target's nav
   function scaleOne(wrap, iframe){
     var heroHAttr = wrap.getAttribute('data-hero-h');
     var navH = Math.max(0, (parseFloat(wrap.getAttribute('data-nav-h')) || 0) - NAV_REVEAL);
