@@ -33,15 +33,28 @@
   --r-btn:8px;
 }
 *{box-sizing:border-box;}
-html{scroll-behavior:smooth;overflow-x:hidden;}
+html{scroll-behavior:smooth;overflow-x:hidden;width:100%;}
 body{
   margin:0;
+  width:100%;
   background:var(--bg-950);
   color:var(--white);
   font-family:var(--sans);
   font-weight:300;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
+}
+/* Full-bleed top-level bands: when this page is pasted into a page
+   builder's own boxed/max-width row (e.g. a GoHighLevel Custom HTML
+   element), these selectors break out to the true viewport edge so
+   backgrounds always run edge-to-edge instead of leaving side gaps.
+   .wrap elements nested inside still center the actual text/cards at
+   a comfortable reading width — only the band itself goes full width. */
+.hero,.explore,.biz-detail,.selector,.why,.final-cta,.site-footer{
+  width:100vw;
+  max-width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
 }
 img,video{max-width:100%;display:block;}
 a{color:inherit;text-decoration:none;}
