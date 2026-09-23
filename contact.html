@@ -1042,44 +1042,25 @@ form.card .form-success{ background:rgba(205,164,77,.1); border-color:rgba(205,1
 
 <section class="section section--dark on-dark">
   <div class="container" style="max-width:820px;">
-    <!-- GHL: replace this form with a native GoHighLevel Form / Survey element (or paste its embed snippet) so submissions reach your CRM and automations. -->
-    <form data-placeholder-form novalidate data-reveal>
-      <div class="form-grid">
-        <div class="field">
-          <label for="name">Full Name</label>
-          <input id="name" name="name" type="text" placeholder="Your name" required />
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="you@email.com" required />
-        </div>
-        <div class="field">
-          <label for="phone">Phone</label>
-          <input id="phone" name="phone" type="tel" placeholder="(555) 555-5555" />
-        </div>
-        <div class="field">
-          <label for="interest">I'm Interested In</label>
-          <select id="interest" name="interest">
-            <option value="">Select an option</option>
-            <option value="dispatching-course">Dispatching Course</option>
-            <option value="dispatch-services">Dispatch Services</option>
-            <option value="mentorship">Trucking &amp; Transportation Mentorship</option>
-            <option value="digital-products">Digital Products</option>
-            <option value="cdl-driver">CDL Box Truck Driver Position</option>
-            <option value="salon">Salon Suite Rental (A-1 FantasyBar)</option>
-            <option value="credit-repair">Credit Repair (A-1 Credit Solutions)</option>
-            <option value="general">General Inquiry</option>
-          </select>
-        </div>
-        <div class="field full">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Tell us a bit about what you're looking for"></textarea>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-gold mt-24">Send Inquiry <svg class="icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
-      <p class="form-note">This form doesn't submit anywhere yet &mdash; connect it to your CRM or booking tool to start receiving inquiries.</p>
-      <div class="form-success">Thanks for reaching out! This is a placeholder confirmation &mdash; connect this form to your CRM so real inquiries reach you.</div>
-    </form>
+    <div data-reveal>
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/tIMnWdDY9OOeHmwFc7m9"
+        style="width:100%;min-height:560px;border:none;border-radius:8px"
+        id="inline-tIMnWdDY9OOeHmwFc7m9"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="Contact Us"
+        data-height="560"
+        data-layout-iframe-id="inline-tIMnWdDY9OOeHmwFc7m9"
+        data-form-id="tIMnWdDY9OOeHmwFc7m9"
+        title="Contact Us">
+      </iframe>
+    </div>
   </div>
 </section>
 
@@ -1210,5 +1191,6 @@ form.card .form-success{ background:rgba(205,164,77,.1); border-color:rgba(205,1
 })();
 
 </script>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </body>
 </html>
