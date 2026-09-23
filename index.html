@@ -114,14 +114,13 @@ p{margin:0;}
 .hero-preview-slide.is-active{opacity:1;transition-delay:.6s;}
 .hero-preview-slide iframe{
   position:absolute;inset:0;width:100%;height:100%;border:0;background:#0d0d11;pointer-events:none;
-  transform:scale(1.04);filter:blur(3px) saturate(1.05);
 }
 .hero-preview-stage::after{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
-    radial-gradient(circle at 12% 88%, rgba(201,168,106,.14), transparent 45%),
-    radial-gradient(ellipse 120% 95% at 50% 50%, transparent 32%, rgba(5,5,6,.8) 100%),
-    linear-gradient(180deg, rgba(5,5,6,.92) 0%, rgba(5,5,6,.78) 42%, rgba(5,5,6,.95) 100%);
+    radial-gradient(circle at 12% 88%, rgba(201,168,106,.12), transparent 45%),
+    radial-gradient(ellipse 120% 95% at 50% 50%, transparent 12%, rgba(5,5,6,.92) 100%),
+    linear-gradient(180deg, rgba(5,5,6,.97) 0%, rgba(5,5,6,.9) 42%, rgba(5,5,6,.98) 100%);
 }
 
 .hero .wrap{position:relative;z-index:2;text-align:center;max-width:820px;}
@@ -630,14 +629,14 @@ p{margin:0;}
 
   function heroAnimateScroll(iframe, duration, onDone){
     var start = null;
+    var win = iframe.contentWindow;
+    var max = 0;
+    try { max = Math.max(0, win.document.documentElement.scrollHeight - win.innerHeight); } catch(e) { /* cross-origin */ }
+    function ease(t){ return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
     function step(ts){
       if(start === null){ start = ts; }
       var t = Math.min((ts - start) / duration, 1);
-      try {
-        var win = iframe.contentWindow;
-        var max = Math.max(0, win.document.documentElement.scrollHeight - win.innerHeight);
-        win.scrollTo({ top: max * t, left: 0, behavior: 'instant' });
-      } catch(e) { /* cross-origin: can't drive the scroll — the preview still shows the live page */ }
+      try { win.scrollTo({ top: max * ease(t), left: 0, behavior: 'instant' }); } catch(e) { /* cross-origin: can't drive the scroll — the preview still shows the live page */ }
       if(t < 1){ heroRafId = requestAnimationFrame(step); }
       else if(onDone){ onDone(); }
     }
