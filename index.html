@@ -106,29 +106,15 @@ p{margin:0;}
 .mobile-logo{height:36px;width:auto;margin-bottom:28px;}
 
 /* ---------- hero ---------- */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--bg-950);}
+.hero{position:relative;padding:150px 0 90px;overflow:hidden;background:var(--bg-950);}
 
-/* rotating background showcase */
-.hero-bg-rotator{position:absolute;inset:0;overflow:hidden;z-index:0;background:var(--bg-950);}
-.hero-bg-slide{position:absolute;inset:0;opacity:0;transition:opacity .85s ease;}
-.hero-bg-slide.is-active{opacity:1;transition-delay:0s;}
-.hero-bg-slide:not(.is-active){transition-delay:0s;}
-.hero-bg-slide img{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;
-  transform:scale(1.03);will-change:transform;filter:blur(4px) saturate(1.05);
-  animation:heroKenBurns 15s ease-in-out infinite alternate;
-}
-.hero-bg-slide:nth-child(2) img{animation-delay:-5s;}
-.hero-bg-slide:nth-child(3) img{animation-delay:-10s;}
-@keyframes heroKenBurns{0%{transform:scale(1.03) translate(0,0);}100%{transform:scale(1.12) translate(-1.2%,-1%);}}
-.hero-bg-rotator::after{
-  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:
-    radial-gradient(circle at 12% 88%, rgba(201,168,106,.14), transparent 45%),
-    radial-gradient(ellipse 120% 95% at 50% 50%, transparent 32%, rgba(5,5,6,.78) 100%),
-    linear-gradient(180deg, rgba(5,5,6,.92) 0%, rgba(5,5,6,.8) 42%, rgba(5,5,6,.95) 100%);
-}
-@media (prefers-reduced-motion: reduce){ .hero-bg-slide img{animation:none!important;} }
+/* ambient background (no site imagery here anymore — the real sites now show sharp, in the foreground preview stage below) */
+.hero-ambient{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.hero-ambient .orb{position:absolute;border-radius:50%;filter:blur(120px);animation:heroDrift 26s ease-in-out infinite;}
+.hero-ambient .orb-1{width:640px;height:640px;background:radial-gradient(circle,rgba(201,168,106,.16),transparent 70%);top:-220px;left:-160px;}
+.hero-ambient .orb-2{width:520px;height:520px;background:radial-gradient(circle,rgba(201,168,106,.09),transparent 70%);bottom:-260px;right:-120px;animation-delay:-10s;}
+@keyframes heroDrift{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(3%,-4%) scale(1.06);}}
+@media (prefers-reduced-motion: reduce){ .hero-ambient .orb{animation:none!important;} }
 
 .hero .wrap{position:relative;z-index:2;text-align:center;max-width:820px;}
 .hero h1{font-size:clamp(2.6rem,6vw,4.4rem);color:#fff;margin-bottom:24px;text-shadow:0 4px 30px rgba(0,0,0,.4);}
@@ -136,8 +122,24 @@ p{margin:0;}
 .hero p.lede{font-size:1.05rem;color:var(--gray-300);max-width:560px;margin:0 auto 40px;line-height:1.8;font-weight:300;}
 .hero .cta-row{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;}
 
+/* live website-tour preview stage */
+.hero-preview-stage{position:relative;z-index:2;max-width:880px;margin:60px auto 0;aspect-ratio:16/10;}
+.hero-preview-slide{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;}
+.hero-preview-slide.is-active{opacity:1;pointer-events:auto;transition-delay:.45s;}
+.hero-preview-frame{
+  position:relative;width:100%;height:100%;border-radius:18px;overflow:hidden;
+  border:1px solid var(--line);background:rgba(255,255,255,.02);
+  box-shadow:0 50px 100px rgba(0,0,0,.55),0 0 70px rgba(201,168,106,.08);
+}
+.hero-preview-bar{height:38px;box-sizing:border-box;display:flex;align-items:center;gap:7px;padding:0 16px;background:rgba(255,255,255,.05);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft);position:relative;z-index:2;}
+.hero-preview-bar span{width:7px;height:7px;border-radius:50%;background:rgba(245,243,239,.28);flex:none;}
+.hero-preview-bar .url{margin-left:8px;font-size:.68rem;letter-spacing:.03em;color:var(--gray-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hero-preview-viewport{position:relative;width:100%;height:calc(100% - 38px);overflow:hidden;background-size:cover;background-position:top center;}
+.hero-preview-viewport iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff;}
+@media (max-width:700px){.hero-preview-stage{aspect-ratio:3/4;margin-top:44px;}}
+
 /* current-business indicators */
-.hero-indicators{position:relative;z-index:2;display:flex;gap:30px;justify-content:center;margin-top:52px;flex-wrap:wrap;}
+.hero-indicators{position:relative;z-index:2;display:flex;gap:30px;justify-content:center;margin-top:44px;flex-wrap:wrap;}
 .hero-indicator{
   display:flex;align-items:center;gap:9px;background:none;border:0;padding:6px 2px;cursor:pointer;
   color:var(--gray-500);font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
@@ -295,16 +297,9 @@ p{margin:0;}
 </div>
 
 <section class="hero">
-  <div class="hero-bg-rotator" id="heroBgRotator">
-    <div class="hero-bg-slide is-active">
-      <img src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-trucking.jpg" alt="Amie's Logistics LLC trucking website preview" />
-    </div>
-    <div class="hero-bg-slide">
-      <img src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-salon.jpg" alt="A-1 FantasyBar LLC salon website preview" />
-    </div>
-    <div class="hero-bg-slide">
-      <img src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-credit-repair.jpg" alt="A-1 Credit Solutions LLC credit repair website preview" />
-    </div>
+  <div class="hero-ambient">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
   </div>
   <div class="wrap" data-reveal>
     <p class="eyebrow center" style="justify-content:center;">Welcome to Amie's Logistics</p>
@@ -316,10 +311,38 @@ p{margin:0;}
       </a>
       <a href="/contact" class="btn btn-ghost">Contact Us</a>
     </div>
+
+    <div class="hero-preview-stage" id="heroPreviewStage">
+      <div class="hero-preview-slide is-active" data-index="0">
+        <div class="hero-preview-frame">
+          <div class="hero-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/trucking</span></div>
+          <div class="hero-preview-viewport" style="background-image:url('https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-trucking.jpg');">
+            <iframe src="https://www.amieslogistics.org/trucking" title="Amie's Logistics LLC — live website tour" loading="eager"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="hero-preview-slide" data-index="1">
+        <div class="hero-preview-frame">
+          <div class="hero-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/salon</span></div>
+          <div class="hero-preview-viewport" style="background-image:url('https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-salon.jpg');">
+            <iframe src="https://www.amieslogistics.org/salon" title="A-1 FantasyBar LLC — live website tour" loading="eager"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="hero-preview-slide" data-index="2">
+        <div class="hero-preview-frame">
+          <div class="hero-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/credit-repair</span></div>
+          <div class="hero-preview-viewport" style="background-image:url('https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-credit-repair.jpg');">
+            <iframe src="https://www.amieslogistics.org/credit-repair" title="A-1 Credit Solutions LLC — live website tour" loading="eager"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="hero-indicators" id="heroIndicators" role="tablist" aria-label="Featured business">
       <button class="hero-indicator is-active" data-index="0" role="tab" aria-selected="true"><span class="num">01</span> Trucking</button>
       <button class="hero-indicator" data-index="1" role="tab" aria-selected="false"><span class="num">02</span> Salon</button>
-      <button class="hero-indicator" data-index="2" role="tab" aria-selected="false"><span class="num">03</span> Credit</button>
+      <button class="hero-indicator" data-index="2" role="tab" aria-selected="false"><span class="num">03</span> Credit Repair</button>
     </div>
   </div>
   <div class="scroll-indicator"><span>Scroll</span><div class="line"></div></div>
@@ -616,32 +639,80 @@ p{margin:0;}
     });
   });
 
-  /* Hero rotating background showcase */
-  var heroSlides = document.querySelectorAll('.hero-bg-slide');
+  /* Hero live website tour: each iframe auto-scrolls top -> bottom, pauses,
+     then crossfades to the next business. Only the iframe's own inner
+     document scrolls — window.scrollTo is never called, so the homepage
+     itself never moves. */
+  var heroSlides = document.querySelectorAll('.hero-preview-slide');
   var heroIndicators = document.querySelectorAll('.hero-indicator');
-  var heroIndex = 0;
-  var heroTimer;
   var heroReduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function showHeroSlide(i){
+  var HERO_SCROLL_MS = 7000;
+  var HERO_PAUSE_MS = 1600;
+  var heroRafId = null;
+  var heroAdvanceTimer = null;
+
+  function heroScrollTop(iframe){
+    try { iframe.contentWindow.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } catch(e) { /* cross-origin: leave as-is */ }
+  }
+
+  function heroAnimateScroll(iframe, duration, onDone){
+    var start = null;
+    function step(ts){
+      if(start === null){ start = ts; }
+      var t = Math.min((ts - start) / duration, 1);
+      try {
+        var win = iframe.contentWindow;
+        var max = Math.max(0, win.document.documentElement.scrollHeight - win.innerHeight);
+        win.scrollTo({ top: max * t, left: 0, behavior: 'instant' });
+      } catch(e) { /* cross-origin: can't drive the scroll — the preview still shows the live page */ }
+      if(t < 1){ heroRafId = requestAnimationFrame(step); }
+      else if(onDone){ onDone(); }
+    }
+    heroRafId = requestAnimationFrame(step);
+  }
+
+  function heroWhenReady(iframe, cb){
+    if(iframe.__heroReady){ cb(); return; }
+    var done = false;
+    function finish(){ if(done) return; done = true; iframe.__heroReady = true; cb(); }
+    iframe.addEventListener('load', finish, { once: true });
+    setTimeout(finish, 2500);
+  }
+
+  function stopHeroCycle(){
+    if(heroRafId){ cancelAnimationFrame(heroRafId); heroRafId = null; }
+    if(heroAdvanceTimer){ clearTimeout(heroAdvanceTimer); heroAdvanceTimer = null; }
+  }
+
+  function runHeroSlide(i){
     heroSlides.forEach(function(s, idx){ s.classList.toggle('is-active', idx === i); });
     heroIndicators.forEach(function(b, idx){
       var active = idx === i;
       b.classList.toggle('is-active', active);
       b.setAttribute('aria-selected', active ? 'true' : 'false');
     });
-    heroIndex = i;
+    var iframe = heroSlides[i] && heroSlides[i].querySelector('iframe');
+    if(!iframe){ return; }
+    var goNext = function(){ runHeroSlide((i + 1) % heroSlides.length); };
+    if(heroReduceMotion){
+      heroAdvanceTimer = setTimeout(goNext, 4000);
+      return;
+    }
+    heroWhenReady(iframe, function(){
+      heroScrollTop(iframe);
+      heroAnimateScroll(iframe, HERO_SCROLL_MS, function(){
+        heroAdvanceTimer = setTimeout(goNext, HERO_PAUSE_MS);
+      });
+    });
   }
-  function nextHeroSlide(){ showHeroSlide((heroIndex + 1) % heroSlides.length); }
-  function startHeroTimer(){ if(!heroReduceMotion){ heroTimer = setInterval(nextHeroSlide, 4000); } }
-  function stopHeroTimer(){ if(heroTimer){ clearInterval(heroTimer); } }
+
   heroIndicators.forEach(function(btn){
     btn.addEventListener('click', function(){
-      stopHeroTimer();
-      showHeroSlide(parseInt(btn.getAttribute('data-index'), 10));
-      startHeroTimer();
+      stopHeroCycle();
+      runHeroSlide(parseInt(btn.getAttribute('data-index'), 10));
     });
   });
-  if(heroSlides.length){ startHeroTimer(); }
+  if(heroSlides.length){ runHeroSlide(0); }
 
   /* Scale live-preview iframes to fill their card at any width */
   var previews = document.querySelectorAll('.live-preview');
