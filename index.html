@@ -191,6 +191,16 @@ p{margin:0;}
 .live-preview[data-hero-h]::after{
   background:linear-gradient(to bottom, transparent 97%, #0d0d11 100%);
 }
+.preview-fallback{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;}
+/* Many mobile browsers refuse to embed these cross-origin pages in an
+   iframe at all (a "can't open this page" error in the frame) — fall
+   back to a static screenshot of the same hero on small screens, where
+   this shows up. Desktop keeps the live preview unchanged. */
+@media (max-width:900px){
+  .hero-preview-slide iframe,
+  .live-preview iframe{display:none;}
+  .preview-fallback{display:block;}
+}
 .live-preview-bar{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:6px;padding:9px 12px;background:rgba(5,5,6,.6);backdrop-filter:blur(6px);}
 .live-preview-bar span{width:6px;height:6px;border-radius:50%;background:rgba(245,243,239,.28);}
 .live-preview-bar .url{margin-left:6px;font-size:.6rem;letter-spacing:.03em;color:var(--gray-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -354,6 +364,7 @@ p{margin:0;}
         <div class="live-preview">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/trucking</span></div>
           <iframe src="https://www.amieslogistics.org/trucking" title="Amie's Logistics LLC live preview" loading="lazy"></iframe>
+          <img class="preview-fallback" src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-trucking.jpg" alt="Amie's Logistics LLC" loading="lazy" />
         </div>
         <div class="biz-content">
           <p class="biz-num">01</p>
@@ -366,6 +377,7 @@ p{margin:0;}
         <div class="live-preview">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/salon</span></div>
           <iframe src="https://www.amieslogistics.org/salon" title="A-1 FantasyBar LLC live preview" loading="lazy"></iframe>
+          <img class="preview-fallback" src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-salon.jpg" alt="A-1 FantasyBar LLC" loading="lazy" />
         </div>
         <div class="biz-content">
           <p class="biz-num">02</p>
@@ -378,6 +390,7 @@ p{margin:0;}
         <div class="live-preview">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/credit-repair</span></div>
           <iframe src="https://www.amieslogistics.org/credit-repair" title="A-1 Credit Solutions LLC live preview" loading="lazy"></iframe>
+          <img class="preview-fallback" src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-credit-repair.jpg" alt="A-1 Credit Solutions LLC" loading="lazy" />
         </div>
         <div class="biz-content">
           <p class="biz-num">03</p>
@@ -419,6 +432,7 @@ p{margin:0;}
         <div class="live-preview" data-hero-h="846">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/trucking</span></div>
           <iframe src="https://www.amieslogistics.org/trucking" title="Amie's Logistics LLC live preview" loading="lazy"></iframe>
+          <img class="preview-fallback" src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-trucking.jpg" alt="Amie's Logistics LLC" loading="lazy" />
         </div>
       </div>
     </div>
@@ -432,6 +446,7 @@ p{margin:0;}
         <div class="live-preview" data-hero-h="863">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/salon</span></div>
           <iframe src="https://www.amieslogistics.org/salon" title="A-1 FantasyBar LLC live preview" loading="lazy"></iframe>
+          <img class="preview-fallback" src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-salon.jpg" alt="A-1 FantasyBar LLC" loading="lazy" />
         </div>
       </div>
     </div>
@@ -487,6 +502,7 @@ p{margin:0;}
         <div class="live-preview" data-hero-h="802">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/credit-repair</span></div>
           <iframe src="https://www.amieslogistics.org/credit-repair" title="A-1 Credit Solutions LLC live preview" loading="lazy"></iframe>
+          <img class="preview-fallback" src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-credit-repair.jpg" alt="A-1 Credit Solutions LLC" loading="lazy" />
         </div>
       </div>
     </div>
