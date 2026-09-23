@@ -185,21 +185,16 @@ p{margin:0;}
 .live-preview[data-hero-h]::after{
   background:linear-gradient(to bottom, transparent 97%, #0d0d11 100%);
 }
-.preview-fallback{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;}
-/* Many mobile browsers refuse to embed these cross-origin pages in an
-   iframe at all (a "can't open this page" error in the frame) — fall
-   back to a static screenshot of the same hero on small screens, where
-   this shows up. Desktop keeps the live preview unchanged. The hero's
-   own background is a plain same-origin <video> (not an iframe), so it
-   isn't affected by this and plays on mobile too. */
-@media (max-width:900px){
-  .live-preview iframe{display:none;}
-  .preview-fallback{display:block;}
-}
+/* Always-visible base layer: shows instantly, and shows through again
+   whenever the iframe below is unmounted (see the IntersectionObserver
+   in the script at the bottom) — while it's off-screen, just after it
+   scrolls away, or on the rare device that can't embed the live page
+   at all. */
+.preview-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;z-index:0;}
 .live-preview-bar{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:6px;padding:9px 12px;background:rgba(5,5,6,.6);backdrop-filter:blur(6px);}
 .live-preview-bar span{width:6px;height:6px;border-radius:50%;background:rgba(245,243,239,.28);}
 .live-preview-bar .url{margin-left:6px;font-size:.6rem;letter-spacing:.03em;color:var(--gray-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.live-preview iframe{position:absolute;top:32px;left:0;width:1440px;height:2600px;border:0;pointer-events:none;transform-origin:top left;background:#0d0d11;}
+.live-preview iframe{position:absolute;top:32px;left:0;width:1440px;height:2600px;border:0;pointer-events:none;transform-origin:top left;background:#0d0d11;z-index:1;}
 .biz-card:hover .live-preview iframe{transition:transform .6s ease;}
 .biz-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:34px 28px;}
 .biz-num{font-family:var(--serif);font-size:.85rem;color:var(--gold-soft);letter-spacing:.08em;margin-bottom:14px;}
@@ -361,9 +356,8 @@ p{margin:0;}
     </div>
     <div class="biz-grid">
       <article class="biz-card" data-reveal onclick="document.getElementById('trucking').scrollIntoView({behavior:'smooth'})">
-        <div class="live-preview">
+        <div class="live-preview" data-src="https://www.amieslogistics.org/trucking" data-title="Amie's Logistics LLC live preview">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/trucking</span></div>
-          <iframe src="https://www.amieslogistics.org/trucking" title="Amie's Logistics LLC live preview" loading="lazy"></iframe>
           <img class="preview-fallback" src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-trucking.jpg" alt="Amie's Logistics LLC" loading="lazy" />
         </div>
         <div class="biz-content">
@@ -374,9 +368,8 @@ p{margin:0;}
         </div>
       </article>
       <article class="biz-card" data-reveal style="--rd:.1s;" onclick="document.getElementById('salon').scrollIntoView({behavior:'smooth'})">
-        <div class="live-preview">
+        <div class="live-preview" data-src="https://www.amieslogistics.org/salon" data-title="A-1 FantasyBar LLC live preview">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/salon</span></div>
-          <iframe src="https://www.amieslogistics.org/salon" title="A-1 FantasyBar LLC live preview" loading="lazy"></iframe>
           <img class="preview-fallback" src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-salon.jpg" alt="A-1 FantasyBar LLC" loading="lazy" />
         </div>
         <div class="biz-content">
@@ -387,9 +380,8 @@ p{margin:0;}
         </div>
       </article>
       <article class="biz-card" data-reveal style="--rd:.2s;" onclick="document.getElementById('credit-repair').scrollIntoView({behavior:'smooth'})">
-        <div class="live-preview">
+        <div class="live-preview" data-src="https://www.amieslogistics.org/credit-repair" data-title="A-1 Credit Solutions LLC live preview">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/credit-repair</span></div>
-          <iframe src="https://www.amieslogistics.org/credit-repair" title="A-1 Credit Solutions LLC live preview" loading="lazy"></iframe>
           <img class="preview-fallback" src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-credit-repair.jpg" alt="A-1 Credit Solutions LLC" loading="lazy" />
         </div>
         <div class="biz-content">
@@ -429,9 +421,8 @@ p{margin:0;}
     </div>
     <div class="biz-detail-media" data-reveal style="--rd:.1s;">
       <div class="biz-detail-frame">
-        <div class="live-preview" data-hero-h="846">
+        <div class="live-preview" data-hero-h="846" data-src="https://www.amieslogistics.org/trucking" data-title="Amie's Logistics LLC live preview">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/trucking</span></div>
-          <iframe src="https://www.amieslogistics.org/trucking" title="Amie's Logistics LLC live preview" loading="lazy"></iframe>
           <img class="preview-fallback" src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-trucking.jpg" alt="Amie's Logistics LLC" loading="lazy" />
         </div>
       </div>
@@ -443,9 +434,8 @@ p{margin:0;}
   <div class="wrap">
     <div class="biz-detail-media" data-reveal>
       <div class="biz-detail-frame">
-        <div class="live-preview" data-hero-h="863">
+        <div class="live-preview" data-hero-h="863" data-src="https://www.amieslogistics.org/salon" data-title="A-1 FantasyBar LLC live preview">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/salon</span></div>
-          <iframe src="https://www.amieslogistics.org/salon" title="A-1 FantasyBar LLC live preview" loading="lazy"></iframe>
           <img class="preview-fallback" src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-salon.jpg" alt="A-1 FantasyBar LLC" loading="lazy" />
         </div>
       </div>
@@ -499,9 +489,8 @@ p{margin:0;}
     </div>
     <div class="biz-detail-media" data-reveal style="--rd:.1s;">
       <div class="biz-detail-frame">
-        <div class="live-preview" data-hero-h="802">
+        <div class="live-preview" data-hero-h="802" data-src="https://www.amieslogistics.org/credit-repair" data-title="A-1 Credit Solutions LLC live preview">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/credit-repair</span></div>
-          <iframe src="https://www.amieslogistics.org/credit-repair" title="A-1 Credit Solutions LLC live preview" loading="lazy"></iframe>
           <img class="preview-fallback" src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-credit-repair.jpg" alt="A-1 Credit Solutions LLC" loading="lazy" />
         </div>
       </div>
@@ -705,32 +694,66 @@ p{margin:0;}
 
   if(heroSlides.length){ runHeroSlide(0); }
 
-  /* Scale live-preview iframes to fill their card. The large biz-detail
-     frames carry a data-hero-h (the business's real hero height) so they
-     crop precisely to just the hero, zoomed in and centered, instead of
+  /* Scale + mount live-preview iframes. The large biz-detail frames carry
+     a data-hero-h (the business's real hero height) so they crop
+     precisely to just the hero, zoomed in and centered, instead of
      bleeding into whatever section follows it. Frames without that
-     attribute (the smaller Explore cards) keep the plain width-fit scale. */
+     attribute (the smaller Explore cards) keep the plain width-fit scale.
+
+     Each preview's iframe is created only while its card is near the
+     viewport and destroyed again once it scrolls well away, instead of
+     staying mounted for the rest of the session. Keeping six full
+     desktop-width pages rendered at once is the likely reason mobile
+     browsers were killing these frames outright ("can't open this page")
+     — this keeps at most one or two alive at a time on any device, while
+     the always-visible screenshot underneath covers the gap the instant
+     an iframe unmounts. */
   var previews = document.querySelectorAll('.live-preview');
   var BAR_H = 32;
-  function scalePreviews(){
+  function scaleOne(wrap, iframe){
+    var heroHAttr = wrap.getAttribute('data-hero-h');
+    if(heroHAttr){
+      var visibleH = wrap.clientHeight - BAR_H;
+      var scale = visibleH / parseFloat(heroHAttr);
+      var scaledWidth = 1440 * scale;
+      var offsetX = (wrap.clientWidth - scaledWidth) / 2;
+      iframe.style.transform = 'translateX(' + offsetX.toFixed(2) + 'px) scale(' + scale.toFixed(4) + ')';
+    } else {
+      iframe.style.transform = 'scale(' + (wrap.offsetWidth / 1440).toFixed(4) + ')';
+    }
+  }
+  function scaleAllMounted(){
     previews.forEach(function(wrap){
       var iframe = wrap.querySelector('iframe');
-      if(!iframe) return;
-      var heroHAttr = wrap.getAttribute('data-hero-h');
-      if(heroHAttr){
-        var visibleH = wrap.clientHeight - BAR_H;
-        var scale = visibleH / parseFloat(heroHAttr);
-        var scaledWidth = 1440 * scale;
-        var offsetX = (wrap.clientWidth - scaledWidth) / 2;
-        iframe.style.transform = 'translateX(' + offsetX.toFixed(2) + 'px) scale(' + scale.toFixed(4) + ')';
-      } else {
-        iframe.style.transform = 'scale(' + (wrap.offsetWidth / 1440).toFixed(4) + ')';
-      }
+      if(iframe){ scaleOne(wrap, iframe); }
     });
   }
+  function mountPreview(wrap){
+    if(wrap.querySelector('iframe')) return;
+    var iframe = document.createElement('iframe');
+    iframe.src = wrap.getAttribute('data-src');
+    iframe.title = wrap.getAttribute('data-title') || '';
+    iframe.setAttribute('aria-hidden', 'true');
+    wrap.appendChild(iframe);
+    scaleOne(wrap, iframe);
+  }
+  function unmountPreview(wrap){
+    var iframe = wrap.querySelector('iframe');
+    if(iframe){ iframe.remove(); }
+  }
   if(previews.length){
-    scalePreviews();
-    window.addEventListener('resize', scalePreviews);
+    window.addEventListener('resize', scaleAllMounted);
+    if('IntersectionObserver' in window){
+      var previewObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ mountPreview(entry.target); }
+          else{ unmountPreview(entry.target); }
+        });
+      }, { rootMargin: '150px 0px 150px 0px' });
+      previews.forEach(function(wrap){ previewObserver.observe(wrap); });
+    } else {
+      previews.forEach(mountPreview);
+    }
   }
 })();
 </script>
