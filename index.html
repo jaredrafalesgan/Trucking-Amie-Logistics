@@ -186,10 +186,15 @@ p{margin:0;}
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(to bottom, transparent 58%, rgba(13,13,17,.6) 78%, #0d0d11 100%);
 }
+/* Frames with a known hero height (below) are cropped precisely to the
+   hero itself, so they only need a hairline safety fade, not a mask. */
+.live-preview[data-hero-h]::after{
+  background:linear-gradient(to bottom, transparent 97%, #0d0d11 100%);
+}
 .live-preview-bar{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:6px;padding:9px 12px;background:rgba(5,5,6,.6);backdrop-filter:blur(6px);}
 .live-preview-bar span{width:6px;height:6px;border-radius:50%;background:rgba(245,243,239,.28);}
 .live-preview-bar .url{margin-left:6px;font-size:.6rem;letter-spacing:.03em;color:var(--gray-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.live-preview iframe{position:absolute;top:32px;left:0;width:1440px;height:2200px;border:0;pointer-events:none;transform-origin:top left;background:#fff;}
+.live-preview iframe{position:absolute;top:32px;left:0;width:1440px;height:2600px;border:0;pointer-events:none;transform-origin:top left;background:#0d0d11;}
 .biz-card:hover .live-preview iframe{transition:transform .6s ease;}
 .biz-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:34px 28px;}
 .biz-num{font-family:var(--serif);font-size:.85rem;color:var(--gold-soft);letter-spacing:.08em;margin-bottom:14px;}
@@ -411,7 +416,7 @@ p{margin:0;}
     </div>
     <div class="biz-detail-media" data-reveal style="--rd:.1s;">
       <div class="biz-detail-frame">
-        <div class="live-preview">
+        <div class="live-preview" data-hero-h="846">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/trucking</span></div>
           <iframe src="https://www.amieslogistics.org/trucking" title="Amie's Logistics LLC live preview" loading="lazy"></iframe>
         </div>
@@ -424,7 +429,7 @@ p{margin:0;}
   <div class="wrap">
     <div class="biz-detail-media" data-reveal>
       <div class="biz-detail-frame">
-        <div class="live-preview">
+        <div class="live-preview" data-hero-h="863">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/salon</span></div>
           <iframe src="https://www.amieslogistics.org/salon" title="A-1 FantasyBar LLC live preview" loading="lazy"></iframe>
         </div>
@@ -479,7 +484,7 @@ p{margin:0;}
     </div>
     <div class="biz-detail-media" data-reveal style="--rd:.1s;">
       <div class="biz-detail-frame">
-        <div class="live-preview">
+        <div class="live-preview" data-hero-h="802">
           <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/credit-repair</span></div>
           <iframe src="https://www.amieslogistics.org/credit-repair" title="A-1 Credit Solutions LLC live preview" loading="lazy"></iframe>
         </div>
@@ -662,14 +667,27 @@ p{margin:0;}
 
   if(heroSlides.length){ runHeroSlide(0); }
 
-  /* Scale live-preview iframes to fill their card at any width */
+  /* Scale live-preview iframes to fill their card. The large biz-detail
+     frames carry a data-hero-h (the business's real hero height) so they
+     crop precisely to just the hero, zoomed in and centered, instead of
+     bleeding into whatever section follows it. Frames without that
+     attribute (the smaller Explore cards) keep the plain width-fit scale. */
   var previews = document.querySelectorAll('.live-preview');
+  var BAR_H = 32;
   function scalePreviews(){
     previews.forEach(function(wrap){
       var iframe = wrap.querySelector('iframe');
       if(!iframe) return;
-      var scale = wrap.offsetWidth / 1440;
-      iframe.style.transform = 'scale(' + scale.toFixed(4) + ')';
+      var heroHAttr = wrap.getAttribute('data-hero-h');
+      if(heroHAttr){
+        var visibleH = wrap.clientHeight - BAR_H;
+        var scale = visibleH / parseFloat(heroHAttr);
+        var scaledWidth = 1440 * scale;
+        var offsetX = (wrap.clientWidth - scaledWidth) / 2;
+        iframe.style.transform = 'translateX(' + offsetX.toFixed(2) + 'px) scale(' + scale.toFixed(4) + ')';
+      } else {
+        iframe.style.transform = 'scale(' + (wrap.offsetWidth / 1440).toFixed(4) + ')';
+      }
     });
   }
   if(previews.length){
