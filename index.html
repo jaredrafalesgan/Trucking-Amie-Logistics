@@ -622,6 +622,7 @@ p{margin:0;}
   var HERO_PAUSE_MS = 1600;
   var heroRafId = null;
   var heroAdvanceTimer = null;
+  var heroCurrentIndex = 0;
 
   function heroScrollTop(iframe){
     try { iframe.contentWindow.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } catch(e) { /* cross-origin: leave as-is */ }
@@ -657,6 +658,7 @@ p{margin:0;}
   }
 
   function runHeroSlide(i){
+    heroCurrentIndex = i;
     heroSlides.forEach(function(s, idx){ s.classList.toggle('is-active', idx === i); });
     heroIndicators.forEach(function(b, idx){
       var active = idx === i;
@@ -684,6 +686,17 @@ p{margin:0;}
       runHeroSlide(parseInt(btn.getAttribute('data-index'), 10));
     });
   });
+
+  /* Tapping/clicking the preview itself restarts that business's scroll-through from the top */
+  var heroStage = document.getElementById('heroPreviewStage');
+  if(heroStage){
+    heroStage.style.cursor = 'pointer';
+    heroStage.addEventListener('click', function(){
+      stopHeroCycle();
+      runHeroSlide(heroCurrentIndex);
+    });
+  }
+
   if(heroSlides.length){ runHeroSlide(0); }
 
   /* Scale live-preview iframes to fill their card at any width */
