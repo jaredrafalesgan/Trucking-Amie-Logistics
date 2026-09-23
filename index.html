@@ -199,10 +199,7 @@ p{margin:0;}
 .biz-list li svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:2;flex:none;}
 .biz-detail-ctas{display:flex;gap:16px;flex-wrap:wrap;}
 .biz-detail-media{position:relative;}
-.biz-detail-frame{position:relative;border-radius:var(--r-card);overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 90px rgba(0,0,0,.55);background:#0d0d11;}
-.frame-bar{display:flex;align-items:center;gap:6px;padding:11px 14px;background:rgba(255,255,255,.04);border-bottom:1px solid var(--line-soft);}
-.frame-bar span{width:7px;height:7px;border-radius:50%;background:rgba(245,243,239,.25);}
-.biz-detail-frame img{width:100%;display:block;}
+.biz-detail-frame{position:relative;aspect-ratio:4/3;border-radius:var(--r-card);overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 90px rgba(0,0,0,.55);background:#0d0d11;}
 @media (max-width:900px){
   .biz-detail{padding:100px 0;}
   .biz-detail .wrap{grid-template-columns:1fr;gap:44px;}
@@ -403,8 +400,10 @@ p{margin:0;}
     </div>
     <div class="biz-detail-media" data-reveal style="--rd:.1s;">
       <div class="biz-detail-frame">
-        <div class="frame-bar"><span></span><span></span><span></span></div>
-        <img src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-trucking.jpg" alt="Amie's Logistics LLC website preview" loading="lazy" />
+        <div class="live-preview">
+          <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/trucking</span></div>
+          <iframe src="https://www.amieslogistics.org/trucking" title="Amie's Logistics LLC live preview" loading="lazy"></iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -414,8 +413,10 @@ p{margin:0;}
   <div class="wrap">
     <div class="biz-detail-media" data-reveal>
       <div class="biz-detail-frame">
-        <div class="frame-bar"><span></span><span></span><span></span></div>
-        <img src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-salon.jpg" alt="A-1 FantasyBar LLC website preview" loading="lazy" />
+        <div class="live-preview">
+          <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/salon</span></div>
+          <iframe src="https://www.amieslogistics.org/salon" title="A-1 FantasyBar LLC live preview" loading="lazy"></iframe>
+        </div>
       </div>
     </div>
     <div class="biz-detail-text" data-reveal style="--rd:.1s;">
@@ -467,8 +468,10 @@ p{margin:0;}
     </div>
     <div class="biz-detail-media" data-reveal style="--rd:.1s;">
       <div class="biz-detail-frame">
-        <div class="frame-bar"><span></span><span></span><span></span></div>
-        <img src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-credit-repair.jpg" alt="A-1 Credit Solutions LLC website preview" loading="lazy" />
+        <div class="live-preview">
+          <div class="live-preview-bar"><span></span><span></span><span></span><span class="url">amieslogistics.org/credit-repair</span></div>
+          <iframe src="https://www.amieslogistics.org/credit-repair" title="A-1 Credit Solutions LLC live preview" loading="lazy"></iframe>
+        </div>
       </div>
     </div>
   </div>
