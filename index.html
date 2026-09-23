@@ -121,12 +121,13 @@ p{margin:0;}
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--bg-950);}
 
-/* live website tour, shown full-bleed as the hero's own background */
+/* cinematic hero background: one looping brand video per business,
+   crossfading in turn, full-bleed behind the hero content */
 .hero-preview-stage{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--bg-950);}
 .hero-preview-slide{position:absolute;inset:0;opacity:0;transition:opacity .6s ease;pointer-events:none;}
 .hero-preview-slide.is-active{opacity:1;transition-delay:.6s;}
-.hero-preview-slide iframe{
-  position:absolute;inset:0;width:100%;height:100%;border:0;background:#0d0d11;pointer-events:none;
+.hero-preview-slide video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;background:#0d0d11;
 }
 .hero-preview-stage::after{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -195,9 +196,10 @@ p{margin:0;}
 /* Many mobile browsers refuse to embed these cross-origin pages in an
    iframe at all (a "can't open this page" error in the frame) — fall
    back to a static screenshot of the same hero on small screens, where
-   this shows up. Desktop keeps the live preview unchanged. */
+   this shows up. Desktop keeps the live preview unchanged. The hero's
+   own background is a plain same-origin <video> (not an iframe), so it
+   isn't affected by this and plays on mobile too. */
 @media (max-width:900px){
-  .hero-preview-slide iframe,
   .live-preview iframe{display:none;}
   .preview-fallback{display:block;}
 }
@@ -322,13 +324,19 @@ p{margin:0;}
 <section class="hero">
   <div class="hero-preview-stage" id="heroPreviewStage">
     <div class="hero-preview-slide is-active" data-index="0" style="background-image:url('https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-trucking.jpg');background-size:cover;background-position:top center;">
-      <iframe src="https://www.amieslogistics.org/trucking" title="Amie's Logistics LLC — live website tour" loading="eager"></iframe>
+      <video muted loop playsinline autoplay preload="auto" poster="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-trucking.jpg" aria-hidden="true">
+        <source src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/video/hero-trucking.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="hero-preview-slide" data-index="1" style="background-image:url('https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-salon.jpg');background-size:cover;background-position:top center;">
-      <iframe src="https://www.amieslogistics.org/salon" title="A-1 FantasyBar LLC — live website tour" loading="eager"></iframe>
+      <video muted loop playsinline preload="metadata" poster="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-salon.jpg" aria-hidden="true">
+        <source src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/video/hero-salon.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="hero-preview-slide" data-index="2" style="background-image:url('https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-credit-repair.jpg');background-size:cover;background-position:top center;">
-      <iframe src="https://www.amieslogistics.org/credit-repair" title="A-1 Credit Solutions LLC — live website tour" loading="eager"></iframe>
+      <video muted loop playsinline preload="metadata" poster="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/img/gateway/hero-preview-credit-repair.jpg" aria-hidden="true">
+        <source src="https://raw.githubusercontent.com/jaredrafalesgan/Trucking-Amie-Logistics/claude/amies-logistics-redesign-83s2rz/assets/video/hero-credit-repair.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
   <div class="wrap" data-reveal>
@@ -648,30 +656,52 @@ p{margin:0;}
     });
   });
 
-  /* Hero live website preview: each business's own hero section loads in a
-     live iframe (top of the page only, no scrolling) and holds, then
-     crossfades to the next business. Showing just the hero — instead of
-     scrolling further into each site — avoids exposing layout issues that
-     live deeper in those pages. */
+  /* Hero cinematic video background: each business's own brand video
+     plays muted/looped behind the hero content and holds, then
+     crossfades to the next business. Only the active slide's video
+     plays; the others stay paused, and the upcoming slide's video is
+     primed to load shortly before it's needed instead of all three
+     loading at full weight up front. */
   var heroSlides = document.querySelectorAll('.hero-preview-slide');
   var heroIndicators = document.querySelectorAll('.hero-indicator');
-  var HERO_HOLD_MS = 6000;
+  var HERO_HOLD_MS = 8000;
+  var HERO_PRIME_LEAD_MS = 1500;
   var heroAdvanceTimer = null;
+  var heroPrimeTimer = null;
   var heroCurrentIndex = 0;
 
   function stopHeroCycle(){
     if(heroAdvanceTimer){ clearTimeout(heroAdvanceTimer); heroAdvanceTimer = null; }
+    if(heroPrimeTimer){ clearTimeout(heroPrimeTimer); heroPrimeTimer = null; }
+  }
+
+  function primeVideo(video){
+    if(!video || video.preload === 'auto') return;
+    video.preload = 'auto';
+    video.load();
   }
 
   function runHeroSlide(i){
     heroCurrentIndex = i;
-    heroSlides.forEach(function(s, idx){ s.classList.toggle('is-active', idx === i); });
+    heroSlides.forEach(function(s, idx){
+      var active = idx === i;
+      s.classList.toggle('is-active', active);
+      var video = s.querySelector('video');
+      if(!video) return;
+      if(active){ video.play().catch(function(){}); }
+      else{ video.pause(); }
+    });
     heroIndicators.forEach(function(b, idx){
       var active = idx === i;
       b.classList.toggle('is-active', active);
       b.setAttribute('aria-selected', active ? 'true' : 'false');
     });
-    heroAdvanceTimer = setTimeout(function(){ runHeroSlide((i + 1) % heroSlides.length); }, HERO_HOLD_MS);
+    var nextIndex = (i + 1) % heroSlides.length;
+    heroAdvanceTimer = setTimeout(function(){ runHeroSlide(nextIndex); }, HERO_HOLD_MS);
+    heroPrimeTimer = setTimeout(function(){
+      var nextVideo = heroSlides[nextIndex] && heroSlides[nextIndex].querySelector('video');
+      primeVideo(nextVideo);
+    }, Math.max(0, HERO_HOLD_MS - HERO_PRIME_LEAD_MS));
   }
 
   heroIndicators.forEach(function(btn){
