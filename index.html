@@ -741,7 +741,7 @@ p{margin:0;}
   var previews = document.querySelectorAll('.live-preview');
   var BAR_H = 32;
   var isDesktop = window.matchMedia('(min-width:901px)').matches;
-  var NAV_REVEAL = 20; // px (in the 1440-wide virtual page) of the target's own nav to leave peeking in at the top, so the preview still reads as a real site instead of hiding its nav entirely
+  var NAV_REVEAL = 9999; // effectively disables the nav crop below -- shows the target's full real nav bar
   function scaleOne(wrap, iframe){
     var heroHAttr = wrap.getAttribute('data-hero-h');
     var navH = Math.max(0, (parseFloat(wrap.getAttribute('data-nav-h')) || 0) - NAV_REVEAL);
